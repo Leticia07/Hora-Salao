@@ -1,0 +1,1 @@
+// Here we put all variables we'll gonna use on our app
