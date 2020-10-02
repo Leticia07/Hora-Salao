@@ -1,16 +1,28 @@
 # hora_salao
 
-A new Flutter project.
+Flutter project created for Mobile Development Class.
 
-## Getting Started
+## Technologies
 
-This project is a starting point for a Flutter application.
+- [Flutter](https://flutter.dev/)
 
-A few resources to get you started if this is your first Flutter project:
+## How To Use
+To clone and run this application you'll need [Git](https://git-scm.com), [Flutter](https://flutter.dev/) installed on your computer. From your command line:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```bash
+# Clone this repository
+$ git clone https://github.com/Leticia07/Hora-Salao.git
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Go into the repository
+$ cd Hora-Salao
+
+# Install dependencies
+$ flutter pub get
+
+# Run the app
+$ flutter run
+
+```
+
+---
+Made with ♥ by [Letícia Aragão](https://www.linkedin.com/in/leticiaaragao/) and Igor Elias :wave: Get in touch!
