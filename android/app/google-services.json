@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "880867377976",
+    "firebase_url": "https://hora-salao.firebaseio.com",
+    "project_id": "hora-salao",
+    "storage_bucket": "hora-salao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880867377976:android:3db97fa67482e2121db7cd",
+        "android_client_info": {
+          "package_name": "com.example.hora_salao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880867377976-as4g5qurg6mlm7b14jtqhqhgbsd7p0rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRVQOS1haM66t_R-oFZTrWhkUtzJEeVbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880867377976-as4g5qurg6mlm7b14jtqhqhgbsd7p0rl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

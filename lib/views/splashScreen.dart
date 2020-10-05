@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hora_salao/globals.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -19,11 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: darkGrey,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Center(
         child: Container(
+          width: MediaQuery.of(context).size.width * 0.5,
           child: Image.asset('lib/assets/images/logo.jpg'),
         ),
       ),
