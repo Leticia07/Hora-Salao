@@ -32,8 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        //'/': (context) => SplashScreen(),
-        '/': (context) => SignupPage(),
+        '/': (context) => SplashScreen(),
         '/initialScreen': (context) => InitialScreen(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignupPage(),
