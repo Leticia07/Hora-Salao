@@ -33,7 +33,16 @@ class _SignupPageState extends State<SignupPage> {
             Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    /* GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        FontAwesome5.arrow_left,
+                      ),
+                    ), */
                     Text("Cliente"),
                     Switch(
                         value: cliente,
