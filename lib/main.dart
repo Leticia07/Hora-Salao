@@ -1,10 +1,12 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hora_salao/views/EditPerfil.dart';
 import 'package:hora_salao/views/initialScreen.dart';
 import 'package:hora_salao/views/login.dart';
 import 'package:hora_salao/views/signup.dart';
 import 'package:hora_salao/views/splashScreen.dart';
+import 'package:hora_salao/views/perfil.dart';
 
 void main() {
   runApp(
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
         '/initialScreen': (context) => InitialScreen(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignupPage(),
+        '/editPerfil': (context) => EditPerfilPage(),
+        '/perfil': (context) => PerfilPage(),
       },
     );
   }

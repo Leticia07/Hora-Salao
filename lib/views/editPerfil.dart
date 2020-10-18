@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 
-
 import '../globals.dart';
 
-class SignupPage extends StatefulWidget {
+class EditPerfilPage extends StatefulWidget {
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _EditPerfilPageState createState() => _EditPerfilPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _EditPerfilPageState extends State<EditPerfilPage> {
   final _formKey = GlobalKey<FormState>();
   bool cliente;
   var info = {};
@@ -19,9 +18,6 @@ class _SignupPageState extends State<SignupPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      cliente = false;
-    });
   }
 
   @override
@@ -34,27 +30,27 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
- /*                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        FontAwesome5.arrow_left,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          FontAwesome5.arrow_left,
+                        ),
                       ),
-                    ), */
-                    Text("Cliente"),
-                    Switch(
-                        value: cliente,
-                        onChanged: (bool valor) {
-                          setState(() {
-                            cliente = valor;
-                          });
-                        }),
-                    Text("Salão"),
-                  ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Form(
                   key: _formKey,
