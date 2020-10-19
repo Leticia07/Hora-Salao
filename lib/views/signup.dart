@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hora_salao/widgets/topBar.dart';
+import 'package:hora_salao/controllers/signup.dart';
 
 import '../globals.dart';
 
@@ -10,20 +13,23 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
-  bool cliente;
+  bool isClient = false;
   var info = {};
+  Signup signupController = new Signup();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(() {
-      cliente = false;
+      isClient = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -32,23 +38,59 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Column(
               children: [
+                TopBar(
+                  forgetPassButton: false,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Text(
+                      "É muito bom te ter conosco!",
+                      style: TextStyle(
+                        color: darkGrey,
+                        fontSize: 20.0,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'Raleway',
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                ),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Text(
+                      "Que serviço devemos te oferecer?",
+                      style: TextStyle(
+                        color: darkGrey,
+                        fontSize: 14.0,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'Raleway',
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /* GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        FontAwesome5.arrow_left,
-                      ),
-                    ), */
                     Text("Cliente"),
                     Switch(
-                        value: cliente,
+                        value: isClient,
                         onChanged: (bool valor) {
                           setState(() {
-                            cliente = valor;
+                            isClient = valor;
                           });
                         }),
                     Text("Salão"),
@@ -59,7 +101,6 @@ class _SignupPageState extends State<SignupPage> {
                   child: Column(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -71,28 +112,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "Fulano da Silva",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
@@ -112,41 +152,42 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "CPF",
+                          decoration: InputDecoration(
+                            labelText: !isClient ? "CPF" : "CNPJ",
                             labelStyle: TextStyle(
                               color: darkGrey,
                             ),
                             contentPadding: EdgeInsets.all(0),
-                            hintText: "000.000.000-00",
+                            hintText: !isClient ? "000.000.000-00" : "00.000.000.0000-00",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.number,
@@ -166,8 +207,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -179,28 +222,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "(00) 90000-0000",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.phone,
@@ -220,8 +262,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -233,28 +277,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "email@email.com",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -274,11 +317,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.05,
-                      // ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -290,28 +332,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "00000-000",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.number,
@@ -331,8 +372,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -344,28 +387,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "Rua dos bobos",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
@@ -385,8 +427,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -398,28 +442,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "Número 0",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.number,
@@ -439,8 +482,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -452,28 +497,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "Taiçoca",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
@@ -493,8 +537,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -506,28 +552,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "Tangamandápio",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
@@ -547,8 +592,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -560,28 +607,27 @@ class _SignupPageState extends State<SignupPage> {
                             hintText: "Unido",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
@@ -601,8 +647,10 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -614,22 +662,21 @@ class _SignupPageState extends State<SignupPage> {
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           obscureText: true,
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -662,7 +709,25 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                print("Cadastrou");
+                                if (!isClient) {
+                                  signupController.signupCliente(info).then((value) {
+                                    if (value) {
+                                      Fluttertoast.showToast(msg: "Usuário cadastrado com sucesso");
+                                      Navigator.pushNamed(context, "/login");
+                                    } else {
+                                      Fluttertoast.showToast(msg: "Erro ao tentar cadastrar usuário!");
+                                    }
+                                  });
+                                } else {
+                                  signupController.signupSalao(info).then((value) {
+                                    if (value) {
+                                      Fluttertoast.showToast(msg: "Salão cadastrado com sucesso");
+                                      Navigator.pushNamed(context, "/login");
+                                    } else {
+                                      Fluttertoast.showToast(msg: "Erro ao tentar cadastrar salão!");
+                                    }
+                                  });
+                                }
                               }
                             },
                             child: Container(

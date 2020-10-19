@@ -1,0 +1,141 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hora_salao/controllers/parlor.dart';
+import 'package:hora_salao/globals.dart';
+import 'package:hora_salao/widgets/bottomBar.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Parlor parlorController = new Parlor();
+  var parlors = [];
+
+  @override
+  void initState() {
+    loadParlors().then((value) {
+      setState(() {
+        parlors = value.documents;
+      });
+    });
+    super.initState();
+  }
+
+  Future loadParlors() async {
+    return await parlorController.read();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    return Scaffold(
+      body: Container(
+        color: white,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.9,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.9 * 0.05,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.9 * 0.5,
+                    child: ListView.builder(
+                      itemCount: parlors.length,
+                      itemBuilder: (context, index) {
+                        var doc = parlors[index].data;
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 20.0, // soften the shadow
+                                  spreadRadius: 1.0, //extend the shadow
+                                  offset: Offset(
+                                    5.0, // Move to right 10  horizontally
+                                    5.0, // Move to bottom 5 Vertically
+                                  ),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: white,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width * 0.8,
+                                    child: Text(
+                                      doc["name"],
+                                      style: TextStyle(
+                                        color: black,
+                                        fontSize: 20.0,
+                                        fontStyle: FontStyle.italic,
+                                        fontFamily: 'Raleway',
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height * 0.02,
+                                  ),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width * 0.8,
+                                    child: Text(
+                                      "${doc["neighborhood"]} - ${doc['zip code']}",
+                                      style: TextStyle(
+                                        color: mainTextColor,
+                                        fontSize: 14.0,
+                                        fontStyle: FontStyle.italic,
+                                        fontFamily: 'Raleway',
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width * 0.8,
+                                    child: Text(
+                                      "${doc["city"]} - ${doc['uf']}",
+                                      style: TextStyle(
+                                        color: mainTextColor,
+                                        fontSize: 14.0,
+                                        fontStyle: FontStyle.italic,
+                                        fontFamily: 'Raleway',
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            BottomBar(
+              screen: 1,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

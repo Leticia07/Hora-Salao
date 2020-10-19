@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hora_salao/views/home.dart';
 import 'package:hora_salao/views/initialScreen.dart';
 import 'package:hora_salao/views/login.dart';
 import 'package:hora_salao/views/signup.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/initialScreen': (context) => InitialScreen(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignupPage(),
+        '/home': (context) => HomePage(),
       },
     );
   }
