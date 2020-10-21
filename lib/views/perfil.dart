@@ -1,6 +1,6 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 
@@ -21,6 +21,9 @@ class _PerfilPageState extends State<PerfilPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -36,160 +39,214 @@ class _PerfilPageState extends State<PerfilPage> {
                   Column(
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(
-                                FontAwesome5.arrow_left,
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width * 0.2,
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.grey[200],
+                                        child: Icon(
+                                          FontAwesome5.user,
+                                          color: black,
+                                          size: MediaQuery.of(context).size.width * 0.1,
+                                        ),
+                                        radius: MediaQuery.of(context).size.width * 0.1,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.02,
+                                  ),
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width * 0.68,
+                                      child: Text(
+                                        cliente.nomePessoa,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
+                      Divider(
+                        color: Colors.grey[300],
+                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.black,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: Text(
+                            "Configurações",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w500,
+                              color: mainTextColor,
                             ),
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.07,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.width * 0.1,
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                          color: Colors.black,
-                        ))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/editPerfil");
-                              },
-                              child: Center(
-                                child: Container(
-                                  child: Text(
-                                    "Informações Pessoais",
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/editPerfil");
+                          },
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 1.0,
+                                    color: Colors.grey[300],
                                   ),
                                 ),
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/editPerfil");
-                              },
-                              child: Icon(
-                                Icons.person,
-                                size: 25,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.width * 0.1,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                          color: Colors.black,
-                        ))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Center(
-                                child: Container(
-                                  child: Text("Meus Agendamentos",
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: MediaQuery.of(context).size.height * 0.02,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Informações Pessoais",
                                       style: TextStyle(
-                                        fontSize: 25,
+                                        fontSize: 18,
                                         fontFamily: 'Roboto',
                                         fontWeight: FontWeight.w500,
-                                      )),
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.person,
+                                      size: 25,
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(
-                                Icons.view_agenda,
-                                size: 25,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.1,
+                        height: MediaQuery.of(context).size.height * 0.05,
                       ),
-                      Container(
-                        height: MediaQuery.of(context).size.width * 0.1,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                          color: Colors.black,
-                        ))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Center(
-                                child: Container(
-                                    child: Text("Sair da conta",
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w500,
-                                        ))),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/editPerfil");
+                          },
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 1.0,
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                              ),
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: MediaQuery.of(context).size.height * 0.02,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Meus Agendamentos",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Icon(
+                                      FontAwesome5.calendar_alt,
+                                      size: 25,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(
-                                Icons.arrow_downward,
-                                size: 25,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/editPerfil");
+                          },
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 1.0,
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                              ),
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: MediaQuery.of(context).size.height * 0.02,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Sair da conta",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Icon(
+                                      FontAwesome5.sign_out_alt,
+                                      size: 25,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(

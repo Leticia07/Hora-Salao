@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hora_salao/controllers/person.dart';
 import 'package:hora_salao/globals.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,6 +10,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Person personController = new Person();
+
   @override
   void initState() {
     super.initState();
@@ -16,8 +19,17 @@ class _SplashScreenState extends State<SplashScreen> {
     loadUser().then((value) {
       if (value != null) {
         user = value;
-        Future.delayed(Duration(seconds: 3)).then((_) {
-          Navigator.pushReplacementNamed(context, "/home");
+        
+        personController.readOne(user.email).then((value) {
+          if (value) {
+            Future.delayed(Duration(seconds: 3)).then((_) {
+              Navigator.pushReplacementNamed(context, "/home");
+            });
+          } else {
+            Future.delayed(Duration(seconds: 3)).then((_) {
+              Navigator.pushReplacementNamed(context, "/initialScreen");
+            });
+          }
         });
       } else {
         Future.delayed(Duration(seconds: 3)).then((_) {

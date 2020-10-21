@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
-                              boxShadow: [
+                              boxShadow: [ 
                                 BoxShadow(
                                   color: Colors.grey,
                                   blurRadius: 20.0, // soften the shadow

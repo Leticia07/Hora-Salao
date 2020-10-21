@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hora_salao/widgets/topBar.dart';
 
 import '../globals.dart';
 
@@ -11,17 +13,22 @@ class EditPerfilPage extends StatefulWidget {
 
 class _EditPerfilPageState extends State<EditPerfilPage> {
   final _formKey = GlobalKey<FormState>();
-  bool cliente;
+  bool isClient;
   var info = {};
 
   @override
   void initState() {
-    // TODO: implement initState
+    setState(() {
+      isClient = true;
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -30,34 +37,94 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
           children: [
             Column(
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          FontAwesome5.arrow_left,
-                        ),
-                      ),
-                    ],
-                  ),
+                TopBar(
+                  forgetPassButton: false,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Form(
                   key: _formKey,
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey[200],
+                              child: Icon(
+                                FontAwesome5.user,
+                                color: black,
+                                size: MediaQuery.of(context).size.width * 0.12,
+                              ),
+                              radius: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                          ),
+                        ),
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: "E-mail",
+                            labelStyle: TextStyle(
+                              color: darkGrey,
+                            ),
+                            contentPadding: EdgeInsets.all(0),
+                            hintText: "email@email.com",
+                            hintStyle: TextStyle(
+                              color: mainTextColor,
+                              fontSize: 14,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w300,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: darkGrey,
+                                width: 1.0,
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: darkGrey,
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                          style: TextStyle(
+                            color: darkGrey,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
+                            fontFamily: 'Roboto',
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          initialValue: cliente.emailPessoa,
+                          enabled: false,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              Fluttertoast.showToast(msg: "Insira um email");
+                              return "";
+                            }
+                          },
+                          onChanged: (value) => {
+                            _formKey.currentState.save(),
+                          },
+                          onSaved: (input) => {
+                            _formKey.currentState.setState(() {
+                              cliente.emailPessoa = input;
+                            })
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -69,31 +136,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "Fulano da Silva",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
+                          initialValue: cliente.nomePessoa,
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira um Nome");
@@ -105,48 +172,50 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["nome"] = input;
+                              cliente.nomePessoa = input;
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "CPF",
+                          decoration: InputDecoration(
+                            labelText: !isClient ? "CPF" : "CNPJ",
                             labelStyle: TextStyle(
                               color: darkGrey,
                             ),
                             contentPadding: EdgeInsets.all(0),
-                            hintText: "000.000.000-00",
+                            hintText: !isClient ? "000.000.000-00" : "00.000.000.0000-00",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
+                          initialValue: cliente.cpfPessoa,
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -159,13 +228,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["CPF"] = input;
+                              cliente.cpfPessoa = input;
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -177,31 +248,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "(00) 90000-0000",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.phone,
+                          initialValue: cliente.telefonePessoa,
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira um Telefone");
@@ -213,70 +284,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["telefone"] = input;
+                              cliente.telefonePessoa = input;
                             })
                           },
                         ),
                       ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "E-mail",
-                            labelStyle: TextStyle(
-                              color: darkGrey,
-                            ),
-                            contentPadding: EdgeInsets.all(0),
-                            hintText: "email@email.com",
-                            hintStyle: TextStyle(
-                              color: mainTextColor,
-                              fontSize: 18,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: darkGrey,
-                                width: 3.0,
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: darkGrey,
-                                width: 3.0,
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(
-                            color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
-                            fontFamily: 'Roboto',
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              Fluttertoast.showToast(msg: "Insira um email");
-                              return "";
-                            }
-                          },
-                          onChanged: (value) => {
-                            _formKey.currentState.save(),
-                          },
-                          onSaved: (input) => {
-                            _formKey.currentState.setState(() {
-                              info["email"] = input;
-                            })
-                          },
-                        ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.05,
-                      // ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -288,31 +304,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "00000-000",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.number,
+                          initialValue: cliente.cpfPessoa,
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira um CEP");
@@ -324,13 +340,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["CEP"] = input;
+                              cliente.cpfPessoa = input;
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -342,30 +360,30 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "Rua dos bobos",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
+                          initialValue: cliente.endereco.rua,
                           keyboardType: TextInputType.text,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -378,13 +396,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["rua"] = input;
+                              cliente.endereco.rua = input;
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -396,28 +416,28 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "Número 0",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
+                          initialValue: cliente.endereco.numero.toString(),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.number,
@@ -432,13 +452,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["numero"] = input;
+                              cliente.endereco.numero = int.tryParse(input);
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -450,31 +472,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "Taiçoca",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
+                          initialValue: cliente.endereco.bairro,
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira um Bairro");
@@ -486,13 +508,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["bairro"] = input;
+                              cliente.endereco.bairro = input;
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -504,31 +528,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "Tangamandápio",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
+                          initialValue: cliente.endereco.cidade,
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira uma cidade");
@@ -540,13 +564,15 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["cidade"] = input;
+                              cliente.endereco.cidade = input;
                             })
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: const InputDecoration(
@@ -558,31 +584,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             hintText: "Unido",
                             hintStyle: TextStyle(
                               color: mainTextColor,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: darkGrey,
-                                width: 3.0,
+                                width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
                             color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
+                            fontSize: 14,
+                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.text,
+                          initialValue: cliente.endereco.estado,
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira um Estado");
@@ -594,61 +620,13 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              info["estado"] = input;
-                            })
-                          },
-                        ),
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.07,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "Senha",
-                            labelStyle: TextStyle(
-                              color: darkGrey,
-                            ),
-                            contentPadding: EdgeInsets.all(0),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: darkGrey,
-                                width: 3.0,
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: darkGrey,
-                                width: 3.0,
-                              ),
-                            ),
-                          ),
-                          obscureText: true,
-                          style: TextStyle(
-                            color: darkGrey,
-                            fontSize: 18,
-                            letterSpacing:
-                                MediaQuery.of(context).size.width * 0.002,
-                            fontFamily: 'Roboto',
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              Fluttertoast.showToast(msg: "Insira uma senha");
-                              return "";
-                            }
-                          },
-                          onChanged: (value) => {
-                            _formKey.currentState.save(),
-                          },
-                          onSaved: (input) => {
-                            _formKey.currentState.setState(() {
-                              info["senha"] = input;
+                              cliente.endereco.estado = input;
                             })
                           },
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.8,
@@ -660,7 +638,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                print("Cadastrou");
+                                
                               }
                             },
                             child: Container(
@@ -675,7 +653,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                               height: 44,
                               width: 142,
                               child: Text(
-                                "Cadastrar",
+                                "Atualizar Perfil",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: white,
