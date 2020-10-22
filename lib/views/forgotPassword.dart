@@ -5,14 +5,14 @@ import 'package:hora_salao/controllers/login.dart';
 import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/widgets/topBar.dart';
 
-class LoginPage extends StatefulWidget {
+class ForgotPasswordPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _formKey = GlobalKey<FormState>();
-  String _email, _password;
+  String _email;
   Login loginController = new Login();
 
   @override
@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: [
                 TopBar(
-                  forgetPassButton: true,
+                  forgetPassButton: false,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
@@ -40,10 +40,10 @@ class _LoginPageState extends State<LoginPage> {
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
-                      "Login",
+                      "Insira seu email",
                       style: TextStyle(
                         color: darkGrey,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                         fontStyle: FontStyle.normal,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w500,
@@ -116,55 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.8,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "Senha",
-                            labelStyle: TextStyle(
-                              color: darkGrey,
-                            ),
-                            contentPadding: EdgeInsets.all(0),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: darkGrey,
-                                width: 1.0,
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: darkGrey,
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          obscureText: true,
-                          style: TextStyle(
-                            color: darkGrey,
-                            fontSize: 14,
-                            letterSpacing: MediaQuery.of(context).size.width * 0.002,
-                            fontFamily: 'Roboto',
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              Fluttertoast.showToast(msg: "Insira uma senha");
-                              return "";
-                            }
-                          },
-                          onChanged: (value) => {
-                            _formKey.currentState.save(),
-                          },
-                          onSaved: (input) => {
-                            _formKey.currentState.setState(() {
-                              _password = input;
-                            })
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: FlatButton(
@@ -173,11 +124,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                loginController.login(_email, _password).then((value) {
+                                loginController.resetPassword(_email).then((value) {
                                   if (value) {
-                                    Navigator.pushReplacementNamed(context, "/home");
+                                    Navigator.pushReplacementNamed(context, "/login");
+                                    Fluttertoast.showToast(msg: "Email de atualização de senha enviado!");
                                   } else {
-                                    Fluttertoast.showToast(msg: "Erro ao tentar logar!");
+                                    Fluttertoast.showToast(msg: "Erro ao tentar resetar senha!");
                                   }
                                 });
                               }
@@ -194,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                               height: 44,
                               width: 142,
                               child: Text(
-                                "Entrar",
+                                "Resetar Senha",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: white,

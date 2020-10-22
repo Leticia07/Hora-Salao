@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hora_salao/controllers/person.dart';
 import 'package:hora_salao/widgets/topBar.dart';
 
 import '../globals.dart';
@@ -15,6 +16,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
   final _formKey = GlobalKey<FormState>();
   bool isClient;
   var info = {};
+  Person personController = new Person();
 
   @override
   void initState() {
@@ -184,12 +186,12 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            labelText: !isClient ? "CPF" : "CNPJ",
+                            labelText: tipoUsuario != "salao" ? "CPF" : "CNPJ",
                             labelStyle: TextStyle(
                               color: darkGrey,
                             ),
                             contentPadding: EdgeInsets.all(0),
-                            hintText: !isClient ? "000.000.000-00" : "00.000.000.0000-00",
+                            hintText: tipoUsuario != "salao" ? "000.000.000-00" : "00.000.000.0000-00",
                             hintStyle: TextStyle(
                               color: mainTextColor,
                               fontSize: 14,
@@ -328,7 +330,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                             fontFamily: 'Roboto',
                           ),
                           keyboardType: TextInputType.number,
-                          initialValue: cliente.cpfPessoa,
+                          initialValue: cliente.endereco.cep != null ? cliente.endereco.cep : "",
                           validator: (value) {
                             if (value.isEmpty) {
                               Fluttertoast.showToast(msg: "Insira um CEP");
@@ -340,7 +342,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                           },
                           onSaved: (input) => {
                             _formKey.currentState.setState(() {
-                              cliente.cpfPessoa = input;
+                              cliente.endereco.cep = input;
                             })
                           },
                         ),
@@ -637,8 +639,16 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                               bottom: 20,
                             ),
                             onPressed: () async {
+                              _formKey.currentState.save();
                               if (_formKey.currentState.validate()) {
-                                
+                                personController.update().then((value) {
+                                  if (value) {
+                                    Navigator.pushReplacementNamed(context, "/perfil");
+                                    Fluttertoast.showToast(msg: "Usuário atualizado!");
+                                  } else {
+                                    Fluttertoast.showToast(msg: "Erro ao tentar atualizar usuário!");
+                                  }
+                                });
                               }
                             },
                             child: Container(

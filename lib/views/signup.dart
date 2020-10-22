@@ -696,6 +696,113 @@ class _SignupPageState extends State<SignupPage> {
                           },
                         ),
                       ),
+                      isClient
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.05,
+                            )
+                          : SizedBox(),
+                      isClient
+                          ? FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Text(
+                                  "Os serviços aparecerão quando um cliente acessar o perfil do seu salão",
+                                  style: TextStyle(
+                                    color: darkGrey,
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.normal,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      isClient
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            )
+                          : SizedBox(),
+                      isClient
+                          ? FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Text(
+                                  "Os serviços devem estar separados por vírgulas",
+                                  style: TextStyle(
+                                    color: darkGrey,
+                                    fontSize: 14.0,
+                                    fontStyle: FontStyle.normal,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      isClient
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            )
+                          : SizedBox(),
+                      isClient
+                          ? Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  labelText: "Serviços",
+                                  labelStyle: TextStyle(
+                                    color: darkGrey,
+                                  ),
+                                  contentPadding: EdgeInsets.all(0),
+                                  hintText: "Cabelo, unhas",
+                                  hintStyle: TextStyle(
+                                    color: mainTextColor,
+                                    fontSize: 14,
+                                    fontFamily: 'Roboto',
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: darkGrey,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: darkGrey,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                ),
+                                style: TextStyle(
+                                  color: darkGrey,
+                                  fontSize: 14,
+                                  letterSpacing: MediaQuery.of(context).size.width * 0.002,
+                                  fontFamily: 'Roboto',
+                                ),
+                                keyboardType: TextInputType.text,
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    Fluttertoast.showToast(msg: "Insira seus serviços");
+                                    return "";
+                                  }
+                                },
+                                onChanged: (value) => {
+                                  _formKey.currentState.save(),
+                                },
+                                onSaved: (input) => {
+                                  _formKey.currentState.setState(() {
+                                    info["servicos"] = input;
+                                  })
+                                },
+                              ),
+                            )
+                          : Container(),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),

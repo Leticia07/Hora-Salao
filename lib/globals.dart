@@ -20,3 +20,4 @@ FirebaseUser user;
 Cliente cliente;
 Salao salao;
 Profissional profissional;
+String tipoUsuario;

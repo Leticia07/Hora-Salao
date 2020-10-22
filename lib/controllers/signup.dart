@@ -25,7 +25,8 @@ class Signup {
           "number": info["numero"],
           "neighborhood": info["bairro"],
           "city": info["cidade"],
-          "uf": info["estado"]
+          "uf": info["estado"],
+          "servicos": info["servicos"].toString().split(",")
         });
 
       } else {

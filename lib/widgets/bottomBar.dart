@@ -65,7 +65,7 @@ class _BottomBarState extends State<BottomBar> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/home");
+                Navigator.pushNamed(context, "/agenda");
               },
               child: Column(
                 children: [
@@ -89,7 +89,7 @@ class _BottomBarState extends State<BottomBar> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/home");
+                Navigator.pushNamed(context, "/messages");
               },
               child: Column(
                 children: [

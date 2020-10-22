@@ -1,4 +1,4 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
@@ -164,7 +164,7 @@ class _PerfilPageState extends State<PerfilPage> {
                         fit: BoxFit.scaleDown,
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, "/editPerfil");
+                            Navigator.pushNamed(context, "/agenda");
                           },
                           child: Center(
                             child: Container(
@@ -185,7 +185,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Meus Agendamentos",
+                                      "Meus Horários",
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontFamily: 'Roboto',
@@ -210,7 +210,8 @@ class _PerfilPageState extends State<PerfilPage> {
                         fit: BoxFit.scaleDown,
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, "/editPerfil");
+                            FirebaseAuth.instance.signOut();
+                            Navigator.pushReplacementNamed(context, "/initialScreen");
                           },
                           child: Center(
                             child: Container(
