@@ -75,7 +75,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                     child: Container(
                                       width: MediaQuery.of(context).size.width * 0.68,
                                       child: Text(
-                                        cliente.nomePessoa,
+                                        tipoUsuario == "cliente" ? cliente.nomePessoa : tipoUsuario == "salao" ? salao.nomeSalao : profissional.nomePessoa,
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontFamily: 'Roboto',

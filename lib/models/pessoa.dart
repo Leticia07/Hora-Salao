@@ -10,10 +10,10 @@ class Pessoa {
   Endereco endereco;
 
   Pessoa(nome, email, telefone, cpf, endereco) {
-    this.nomePessoa = nome;
-    this.emailPessoa = email;
-    this.telefonePessoa = telefone;
-    this.cpfPessoa = cpf;
+    this.nomePessoa = nome.toString();
+    this.emailPessoa = email.toString();
+    this.telefonePessoa = telefone.toString();
+    this.cpfPessoa = cpf.toString();
     this.endereco = endereco;
   }
 }

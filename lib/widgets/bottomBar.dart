@@ -31,8 +31,8 @@ class _BottomBarState extends State<BottomBar> {
       ),
       child: Padding(
         padding: EdgeInsets.only(
-          top: 8.0,
-          bottom: 8.0,
+          top: MediaQuery.of(context).size.height * 0.03,
+          bottom: MediaQuery.of(context).size.height * 0.02,
           left: MediaQuery.of(context).size.width * 0.03,
           right: MediaQuery.of(context).size.width * 0.03,
         ),
@@ -89,17 +89,21 @@ class _BottomBarState extends State<BottomBar> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/messages");
+                if (tipoUsuario != "salao") {
+                  Navigator.pushNamed(context, "/messages");
+                } else {
+                  Navigator.pushNamed(context, "/profissionais");
+                }
               },
               child: Column(
                 children: [
                   Icon(
-                    FontAwesome.chat,
+                    tipoUsuario != "salao" ? FontAwesome.chat : FontAwesome5.users,
                     size: 20,
                     color: this.widget.screen == 3 ? softRed : black,
                   ),
                   Text(
-                    "Mensagens",
+                    tipoUsuario != "salao" ? "Mensagens" : "Profissionais",
                     style: TextStyle(
                       color: black,
                       fontSize: 12.0,

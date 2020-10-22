@@ -5,6 +5,7 @@ import 'package:hora_salao/controllers/parlor.dart';
 import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/views/showSalao.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
+import 'package:hora_salao/widgets/homeParlor.dart';
 import 'package:hora_salao/widgets/topBar.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,11 +19,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    loadParlors().then((value) {
-      setState(() {
-        parlors = value.documents;
+    if (tipoUsuario == "cliente") {
+      loadParlors().then((value) {
+        setState(() {
+          parlors = value.documents;
+        });
       });
-    });
+    }
     super.initState();
     if (FirebaseAuth.instance.currentUser() == null) {
       Navigator.pushReplacementNamed(context, "/initialScreen");
@@ -53,9 +56,23 @@ class _HomePageState extends State<HomePage> {
                   TopBar(
                     arrow: false,
                     forgetPassButton: false,
-                    text: "Salões disponíveis",
+                    text: tipoUsuario == "cliente"
+                        ? "Salões disponíveis"
+                        : tipoUsuario == "salao"
+                            ? salao.nomeSalao
+                            : profissional.nomePessoa,
                   ),
-                  Container(
+                  tipoUsuario == "salao"
+                      ? Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: MediaQuery.of(context).size.height * 0.78,
+                          child: ListView(
+                            children: [
+                              HomeParlor(),
+                            ],
+                          ))
+                      : Container(),
+                  tipoUsuario == "cliente" ? Container(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: MediaQuery.of(context).size.height * 0.78,
                     child: ListView.builder(
@@ -143,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
-                  ),
+                  ) : Container(),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),

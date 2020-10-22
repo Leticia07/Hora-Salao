@@ -1,18 +1,17 @@
 
 
-import 'package:hora_salao/models/endereco.dart';
 import 'package:hora_salao/models/pessoa.dart';
 import 'package:hora_salao/models/servicos.dart';
 
 class Profissional extends Pessoa {
 
-  DateTime inicioHorario;
-  DateTime fimHorario;
+  double inicioHorario;
+  double fimHorario;
   List<Servicos> servicos = new List<Servicos>();
 
   Profissional(nome, email, telefone, cpf, endereco, inicio, fim) : super(nome, email, telefone, cpf, endereco) {
-    this.inicioHorario = inicio;
-    this.fimHorario = fim;
+    this.inicioHorario = double.parse(inicio);
+    this.fimHorario = double.parse(fim);
   }
 
   void addServico (servico) {

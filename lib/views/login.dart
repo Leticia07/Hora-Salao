@@ -172,6 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                               bottom: 20,
                             ),
                             onPressed: () async {
+                              _formKey.currentState.save();
                               if (_formKey.currentState.validate()) {
                                 loginController.login(_email, _password).then((value) {
                                   if (value) {

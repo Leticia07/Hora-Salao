@@ -5,14 +5,14 @@ class Endereco {
   String bairro;
   String estado;
   String cep;
-  int numero;
+  String numero;
 
   Endereco(rua, cidade, estado, bairro, cep, numero) {
     this.rua = rua;
     this.cidade = cidade;
     this.bairro = bairro;
     this.estado = estado;
-    this.cep = cep;
-    this.numero = numero;
+    this.cep = cep.toString();
+    this.numero = numero.toString();
   }
 }

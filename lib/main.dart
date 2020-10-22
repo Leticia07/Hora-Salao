@@ -8,6 +8,8 @@ import 'package:hora_salao/views/initialScreen.dart';
 import 'package:hora_salao/views/login.dart';
 import 'package:hora_salao/views/forgotPassword.dart';
 import 'package:hora_salao/views/messages.dart';
+import 'package:hora_salao/views/newProfessional.dart';
+import 'package:hora_salao/views/professional.dart';
 import 'package:hora_salao/views/signup.dart';
 import 'package:hora_salao/views/splashScreen.dart';
 import 'package:hora_salao/views/perfil.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
         '/perfil': (context) => PerfilPage(),
         '/agenda': (context) => Agenda(),
         '/messages': (context) => Message(),
+        '/profissionais': (context) => Professional(),
+        '/newProfessional': (context) => NewProfessional(),
       },
     );
   }
