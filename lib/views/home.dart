@@ -50,9 +50,10 @@ class _HomePageState extends State<HomePage> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.9,
+              //color: black,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [
+                children: [ 
                   TopBar(
                     arrow: false,
                     forgetPassButton: false,
@@ -64,6 +65,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   tipoUsuario == "salao"
                       ? Container(
+                          color: black,
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.height * 0.78,
                           child: ListView(
@@ -103,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(20.0),
-                                  color: white,
+                                  color: black,
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -114,12 +116,12 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           doc["name"],
                                           style: TextStyle(
-                                            color: black,
+                                            color: Colors.yellow[700],
                                             fontSize: 20.0,
                                             fontStyle: FontStyle.italic,
                                             fontFamily: 'Raleway',
                                           ),
-                                          textAlign: TextAlign.left,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                       SizedBox(
@@ -130,12 +132,12 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           "${doc["neighborhood"]} - ${doc['zip code']}",
                                           style: TextStyle(
-                                            color: mainTextColor,
+                                            color: white,
                                             fontSize: 14.0,
                                             fontStyle: FontStyle.italic,
                                             fontFamily: 'Raleway',
                                           ),
-                                          textAlign: TextAlign.left,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                       Container(
@@ -143,12 +145,12 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           "${doc["city"]} - ${doc['uf']}",
                                           style: TextStyle(
-                                            color: mainTextColor,
+                                            color: white,
                                             fontSize: 14.0,
                                             fontStyle: FontStyle.italic,
                                             fontFamily: 'Raleway',
                                           ),
-                                          textAlign: TextAlign.left,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ],

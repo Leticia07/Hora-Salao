@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(),
         color: mainBgColor,
         child: ListView(
           children: [
