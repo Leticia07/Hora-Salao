@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.9,
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                           ))
                       : Container(),
                   tipoUsuario == "cliente" ? Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
+                    width: MediaQuery.of(context).size.width ,
                     height: MediaQuery.of(context).size.height * 0.78,
                     child: ListView.builder(
                       itemCount: parlors.length,
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                                       spreadRadius: 1.0, //extend the shadow
                                       offset: Offset(
                                         5.0, // Move to right 10  horizontally
-                                        5.0, // Move to bottom 5 Vertically
+                                        MediaQuery.of(context).size.height * 0.005, // Move to bottom 5 Vertically
                                       ),
                                     )
                                   ],
@@ -155,6 +156,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
+                              
                             ],
                           ),
                         );
