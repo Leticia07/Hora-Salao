@@ -43,9 +43,9 @@ class _HomePageState extends State<HomePage> {
     ]);
     return Scaffold(
       body: Container(
-        color: white,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        color: darkGrey,
         child: Column(
           children: [
             Container(
@@ -65,7 +65,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                   tipoUsuario == "salao"
                       ? Container(
-                          color: black,
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.height * 0.78,
                           child: ListView(
@@ -75,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                           ))
                       : Container(),
                   tipoUsuario == "cliente" ? Container(
-                    width: MediaQuery.of(context).size.width ,
+                    width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.78,
                     child: ListView.builder(
                       itemCount: parlors.length,
@@ -95,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey,
+                                      color: black,
                                       blurRadius: 20.0, // soften the shadow
                                       spreadRadius: 1.0, //extend the shadow
                                       offset: Offset(
@@ -105,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(20.0),
-                                  color: black,
+                                  color: white,
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -116,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           doc["name"],
                                           style: TextStyle(
-                                            color: Colors.yellow[700],
+                                            color: darkGrey,
                                             fontSize: 20.0,
                                             fontStyle: FontStyle.italic,
                                             fontFamily: 'Raleway',
@@ -132,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           "${doc["neighborhood"]} - ${doc['zip code']}",
                                           style: TextStyle(
-                                            color: white,
+                                            color: darkGrey,
                                             fontSize: 14.0,
                                             fontStyle: FontStyle.italic,
                                             fontFamily: 'Raleway',
@@ -145,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           "${doc["city"]} - ${doc['uf']}",
                                           style: TextStyle(
-                                            color: white,
+                                            color: darkGrey,
                                             fontSize: 14.0,
                                             fontStyle: FontStyle.italic,
                                             fontFamily: 'Raleway',

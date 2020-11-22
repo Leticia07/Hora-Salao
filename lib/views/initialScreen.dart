@@ -113,12 +113,12 @@ class _InitialScreenState extends State<InitialScreen> {
                   child: Container(
                     width: 200,
                     height: 50,
-                    color: white,
+                    color: darkGrey,
                     child: Center(
                       child: Text(
                         "Login",
                         style: TextStyle(
-                          color: darkGrey,
+                          color: Color(0xFFdaa520),
                           fontSize: 20.0,
                           fontStyle: FontStyle.italic,
                           fontFamily: 'Raleway',
@@ -140,12 +140,12 @@ class _InitialScreenState extends State<InitialScreen> {
                   child: Container(
                     width: 200,
                     height: 50,
-                    color: white,
+                    color: darkGrey,
                     child: Center(
                       child: Text(
                         "Cadastre-se",
                         style: TextStyle(
-                          color: darkGrey,
+                          color: Color(0xFFdaa520),
                           fontSize: 20.0,
                           fontStyle: FontStyle.italic,
                           fontFamily: 'Raleway',
