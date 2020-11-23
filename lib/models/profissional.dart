@@ -10,8 +10,8 @@ class Profissional extends Pessoa {
   List<Servicos> servicos = new List<Servicos>();
 
   Profissional(nome, email, telefone, cpf, endereco, inicio, fim) : super(nome, email, telefone, cpf, endereco) {
-    this.inicioHorario = double.parse(inicio);
-    this.fimHorario = double.parse(fim);
+    this.inicioHorario = double.parse(inicio.toString());
+    this.fimHorario = double.parse(fim.toString());
   }
 
   void addServico (servico) {

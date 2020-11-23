@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hora_salao/controllers/parlor.dart';
+import 'package:hora_salao/controllers/professional.dart';
 import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/views/showSalao.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
@@ -15,7 +16,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Parlor parlorController = new Parlor();
-  var parlors = [];
+  Professional professionalController = new Professional();
+  var parlors = [], professionals = [];
 
   @override
   void initState() {
@@ -25,15 +27,25 @@ class _HomePageState extends State<HomePage> {
           parlors = value.documents;
         });
       });
+    } else if (tipoUsuario == "salao") {
+      loadProfessionals().then((value) {
+        setState(() {
+          professionals = value;
+        });
+      });
     }
     super.initState();
-    if (FirebaseAuth.instance.currentUser() == null) {
+    if (FirebaseAuth.instance.currentUser == null) {
       Navigator.pushReplacementNamed(context, "/initialScreen");
     }
   }
 
   Future loadParlors() async {
     return await parlorController.read();
+  }
+
+  Future loadProfessionals() async {
+    return await professionalController.read();
   }
 
   @override
@@ -95,8 +107,8 @@ class _HomePageState extends State<HomePage> {
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey,
-                                      blurRadius: 20.0, // soften the shadow
-                                      spreadRadius: 1.0, //extend the shadow
+                                      blurRadius: 10.0, // soften the shadow
+                                      spreadRadius: 0.5, //extend the shadow
                                       offset: Offset(
                                         5.0, // Move to right 10  horizontally
                                         MediaQuery.of(context).size.height * 0.005, // Move to bottom 5 Vertically
@@ -156,7 +168,11 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              
+                              index == parlors.length - 1
+                                  ? SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.05,
+                                    )
+                                  : SizedBox()
                             ],
                           ),
                         );

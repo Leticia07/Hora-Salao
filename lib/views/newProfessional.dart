@@ -417,14 +417,14 @@ class _NewProfessionalState extends State<NewProfessional> {
                                     onPressed: () async {
                                       _formKey.currentState.save();
                                       if (_formKey.currentState.validate()) {
-                                        // signupController.signupProfessional(info).then((value) {
-                                        //   if (value) {
-                                        //     Fluttertoast.showToast(msg: "Profissional cadastrado com sucesso");
-                                        //     Navigator.pop(context);
-                                        //   } else {
-                                        //     Fluttertoast.showToast(msg: "Erro ao tentar cadastrar profissional!");
-                                        //   }
-                                        // });
+                                        signupController.signupProfessional(info).then((value) {
+                                          if (value) {
+                                            Fluttertoast.showToast(msg: "Profissional cadastrado com sucesso");
+                                            Navigator.pushReplacementNamed(context, '/profissionais');
+                                          } else {
+                                            Fluttertoast.showToast(msg: "Erro ao tentar cadastrar profissional!");
+                                          }
+                                        });
                                       }
                                     },
                                     child: Container(

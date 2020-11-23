@@ -15,11 +15,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    //FirebaseAuth.instance.signOut();
     SystemChrome.setEnabledSystemUIOverlays([]);
     loadUser().then((value) {
       if (value != null) {
         user = value;
-        
+
         personController.readOne(user.email).then((value) {
           if (value) {
             Future.delayed(Duration(seconds: 3)).then((_) {
@@ -40,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future loadUser() async {
-    return await FirebaseAuth.instance.currentUser();
+    return FirebaseAuth.instance.currentUser;
   }
 
   @override

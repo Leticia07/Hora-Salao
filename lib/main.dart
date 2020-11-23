@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hora_salao/views/agenda.dart';
@@ -14,7 +15,9 @@ import 'package:hora_salao/views/signup.dart';
 import 'package:hora_salao/views/splashScreen.dart';
 import 'package:hora_salao/views/perfil.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     DevicePreview(
       //enabled: !kReleaseMode,
