@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: mainBgColor,
+        color: darkGrey,
         child: ListView(
           children: [
             Column(
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       "Login",
                       style: TextStyle(
-                        color: darkGrey,
+                        color: Color(0xFFdaa520),
                         fontSize: 20.0,
                         fontStyle: FontStyle.normal,
                         fontFamily: 'Raleway',
@@ -65,31 +65,31 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: const InputDecoration(
                             labelText: "Email",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "email@email.com",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -120,25 +120,25 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: const InputDecoration(
                             labelText: "Senha",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           obscureText: true,
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -186,9 +186,9 @@ class _LoginPageState extends State<LoginPage> {
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: darkGrey,
+                                color: white,
                                 border: Border.all(
-                                  color: Color(0xFFA3A3A372),
+                                  color: Color(0xFFdaa520),
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -198,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                                 "Entrar",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: white,
+                                  color: darkGrey,
                                 ),
                               ),
                             ),

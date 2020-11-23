@@ -41,6 +41,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
             children: [
               TopBar(forgetPassButton: false, text: "Editar Perfil"),
               Container(
+                color: darkGrey,
                 height: MediaQuery.of(context).size.height * 0.9,
                 child: ListView(
                   children: [
@@ -62,7 +63,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                       backgroundColor: Colors.grey[200],
                                       child: Icon(
                                         FontAwesome5.user,
-                                        color: black,
+                                        color: Color(0xFFdaa520),
                                         size: MediaQuery.of(context).size.width * 0.12,
                                       ),
                                       radius: MediaQuery.of(context).size.width * 0.2,
@@ -76,31 +77,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "E-mail",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "email@email.com",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -143,31 +144,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Nome",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "Fulano da Silva",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -209,31 +210,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: InputDecoration(
                                     labelText: tipoUsuario != "salao" ? "CPF" : "CNPJ",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: tipoUsuario != "salao" ? "000.000.000-00" : "00.000.000.0000-00",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -275,31 +276,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Telefone",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "(00) 90000-0000",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -341,31 +342,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "CEP",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "00000-000",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -409,31 +410,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Rua",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "Rua dos bobos",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -475,25 +476,25 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Número",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "Número 0",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
@@ -504,7 +505,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                           ? salao.endereco.numero.toString()
                                           : profissional.endereco.numero.toString(),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -541,31 +542,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Bairro",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "Taiçoca",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -607,31 +608,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Cidade",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "Tangamandápio",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -673,31 +674,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   decoration: const InputDecoration(
                                     labelText: "Estado",
                                     labelStyle: TextStyle(
-                                      color: darkGrey,
+                                      color: Color(0xFFdaa520),
                                     ),
                                     contentPadding: EdgeInsets.all(0),
                                     hintText: "Unido",
                                     hintStyle: TextStyle(
-                                      color: mainTextColor,
+                                      color: Color(0xFFdaa520),
                                       fontSize: 14,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w300,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: darkGrey,
+                                        color: white,
                                         width: 1.0,
                                       ),
                                     ),
                                   ),
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: white,
                                     fontSize: 14,
                                     letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                     fontFamily: 'Roboto',
@@ -743,7 +744,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                         child: Text(
                                           "Os serviços aparecerão quando um cliente acessar o perfil do seu salão",
                                           style: TextStyle(
-                                            color: darkGrey,
+                                            color: Color(0xFFdaa520),
                                             fontSize: 18.0,
                                             fontStyle: FontStyle.normal,
                                             fontFamily: 'Raleway',
@@ -767,7 +768,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                         child: Text(
                                           "Os serviços devem estar separados por vírgulas",
                                           style: TextStyle(
-                                            color: darkGrey,
+                                            color: Color(0xFFdaa520),
                                             fontSize: 14.0,
                                             fontStyle: FontStyle.normal,
                                             fontFamily: 'Raleway',
@@ -790,31 +791,31 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                         decoration: const InputDecoration(
                                           labelText: "Serviços",
                                           labelStyle: TextStyle(
-                                            color: darkGrey,
+                                            color: Color(0xFFdaa520),
                                           ),
                                           contentPadding: EdgeInsets.all(0),
                                           hintText: "Cabelo, unhas",
                                           hintStyle: TextStyle(
-                                            color: mainTextColor,
+                                            color: Color(0xFFdaa520),
                                             fontSize: 14,
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.w300,
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: darkGrey,
+                                              color: white,
                                               width: 1.0,
                                             ),
                                           ),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: darkGrey,
+                                              color: white,
                                               width: 1.0,
                                             ),
                                           ),
                                         ),
                                         style: TextStyle(
-                                          color: darkGrey,
+                                          color: white,
                                           fontSize: 14,
                                           letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                           fontFamily: 'Roboto',
@@ -865,9 +866,9 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        color: darkGrey,
+                                        color: white,
                                         border: Border.all(
-                                          color: Color(0xFFA3A3A372),
+                                          color: Color(0xFFdaa520),
                                         ),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
@@ -877,7 +878,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                         "Atualizar Perfil",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          color: white,
+                                          color: darkGrey
                                         ),
                                       ),
                                     ),

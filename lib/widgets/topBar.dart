@@ -23,10 +23,11 @@ class _TopBarState extends State<TopBar> {
       width: MediaQuery.of(context).size.width * 1,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
+        color: darkGrey,
         border: Border(
           bottom: BorderSide(
-            color:  this.widget.text != null ? black : Colors.transparent,
-            width: this.widget.text != null ? 0.15 : 0.0,
+            color:  this.widget.text != null ? white : Colors.transparent,
+            width: this.widget.text != null ? 0.515 : 0.0,
           ),
         ),
       ),
@@ -48,6 +49,7 @@ class _TopBarState extends State<TopBar> {
                   },
                   child: Icon(
                     FontAwesome5.arrow_left,
+                    color: Color(0xFFdaa520),
                   ),
                 ) : SizedBox(),
                 this.widget.text != null
@@ -63,6 +65,7 @@ class _TopBarState extends State<TopBar> {
                           child: Text(
                             this.widget.text,
                             style: TextStyle(
+                              color: Color(0xFFdaa520),
                               fontSize: 22.0,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w500,
@@ -78,7 +81,7 @@ class _TopBarState extends State<TopBar> {
                         },
                         child: Center(
                           child: Container(
-                            child: Text("Esqueci minha senha"),
+                            child: Text("Esqueci minha senha", style: TextStyle(color: Color(0xFFdaa520)),),
                           ),
                         ),
                       )

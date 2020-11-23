@@ -34,6 +34,7 @@ class _SignupPageState extends State<SignupPage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        color: darkGrey,
         child: ListView(
           children: [
             Column(
@@ -51,7 +52,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: Text(
                       "É muito bom te ter conosco!",
                       style: TextStyle(
-                        color: darkGrey,
+                        color: Color(0xFFdaa520),
                         fontSize: 20.0,
                         fontStyle: FontStyle.italic,
                         fontFamily: 'Raleway',
@@ -70,7 +71,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: Text(
                       "Que serviço devemos te oferecer?",
                       style: TextStyle(
-                        color: darkGrey,
+                        color: Color(0xFFdaa520),
                         fontSize: 14.0,
                         fontStyle: FontStyle.italic,
                         fontFamily: 'Raleway',
@@ -85,7 +86,7 @@ class _SignupPageState extends State<SignupPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Cliente"),
+                    Text("Cliente", style: TextStyle(color: Color(0xFFdaa520)),),
                     Switch(
                         value: isClient,
                         onChanged: (bool valor) {
@@ -93,7 +94,7 @@ class _SignupPageState extends State<SignupPage> {
                             isClient = valor;
                           });
                         }),
-                    Text("Salão"),
+                    Text("Salão", style: TextStyle(color: Color(0xFFdaa520)),),
                   ],
                 ),
                 Form(
@@ -106,31 +107,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Nome",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "Fulano da Silva",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -161,31 +162,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                             labelText: !isClient ? "CPF" : "CNPJ",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: !isClient ? "000.000.000-00" : "00.000.000.0000-00",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -216,31 +217,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Telefone",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "(00) 90000-0000",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -271,31 +272,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "E-mail",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "email@email.com",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -326,31 +327,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "CEP",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "00000-000",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -381,31 +382,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Rua",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "Rua dos bobos",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -436,31 +437,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Número",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "Número 0",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -491,31 +492,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Bairro",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "Taiçoca",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -546,31 +547,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Cidade",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "Tangamandápio",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -601,31 +602,31 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Estado",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             hintText: "Unido",
                             hintStyle: TextStyle(
-                              color: mainTextColor,
+                              color: Color(0xFFdaa520),
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w300,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -656,25 +657,25 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: const InputDecoration(
                             labelText: "Senha",
                             labelStyle: TextStyle(
-                              color: darkGrey,
+                              color: Color(0xFFdaa520),
                             ),
                             contentPadding: EdgeInsets.all(0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: darkGrey,
+                                color: white,
                                 width: 1.0,
                               ),
                             ),
                           ),
                           obscureText: true,
                           style: TextStyle(
-                            color: darkGrey,
+                            color: white,
                             fontSize: 14,
                             letterSpacing: MediaQuery.of(context).size.width * 0.002,
                             fontFamily: 'Roboto',
@@ -709,7 +710,7 @@ class _SignupPageState extends State<SignupPage> {
                                 child: Text(
                                   "Os serviços aparecerão quando um cliente acessar o perfil do seu salão",
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: Color(0xFFdaa520),
                                     fontSize: 18.0,
                                     fontStyle: FontStyle.normal,
                                     fontFamily: 'Raleway',
@@ -733,7 +734,7 @@ class _SignupPageState extends State<SignupPage> {
                                 child: Text(
                                   "Os serviços devem estar separados por vírgulas",
                                   style: TextStyle(
-                                    color: darkGrey,
+                                    color: Color(0xFFdaa520),
                                     fontSize: 14.0,
                                     fontStyle: FontStyle.normal,
                                     fontFamily: 'Raleway',
@@ -756,31 +757,31 @@ class _SignupPageState extends State<SignupPage> {
                                 decoration: const InputDecoration(
                                   labelText: "Serviços",
                                   labelStyle: TextStyle(
-                                    color: darkGrey,
+                                    color: Color(0xFFdaa520),
                                   ),
                                   contentPadding: EdgeInsets.all(0),
                                   hintText: "Cabelo, unhas",
                                   hintStyle: TextStyle(
-                                    color: mainTextColor,
+                                    color: Color(0xFFdaa520),
                                     fontSize: 14,
                                     fontFamily: 'Roboto',
                                     fontWeight: FontWeight.w300,
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: darkGrey,
+                                      color: white,
                                       width: 1.0,
                                     ),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: darkGrey,
+                                      color: white,
                                       width: 1.0,
                                     ),
                                   ),
                                 ),
                                 style: TextStyle(
-                                  color: darkGrey,
+                                  color: white,
                                   fontSize: 14,
                                   letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                   fontFamily: 'Roboto',
@@ -840,7 +841,7 @@ class _SignupPageState extends State<SignupPage> {
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: darkGrey,
+                                color: white,
                                 border: Border.all(
                                   color: Color(0xFFA3A3A372),
                                 ),
@@ -852,7 +853,7 @@ class _SignupPageState extends State<SignupPage> {
                                 "Cadastrar",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: white,
+                                  color: darkGrey,
                                 ),
                               ),
                             ),
