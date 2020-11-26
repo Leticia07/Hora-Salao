@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: darkGrey,
+        color: mainBgColor,//darkGrey,
         child: Column(
           children: [
             Container(
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(20.0),
-                                  color: white,
+                                  color: mainBgColor,
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),

@@ -28,7 +28,7 @@ class _PerfilPageState extends State<PerfilPage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: darkGrey,//mainBgColor,
+        color: mainBgColor,//mainBgColor,
         child: Column(
           children: [
             Container(
@@ -60,7 +60,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                         backgroundColor: Colors.grey[300],
                                         child: Icon(
                                           FontAwesome5.user,
-                                          color: Color(0xFFdaa520),
+                                          color: mainTextColor,
                                           size: MediaQuery.of(context).size.width * 0.1,
                                         ),
                                         radius: MediaQuery.of(context).size.width * 0.1,
@@ -80,7 +80,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                           fontSize: 18,
                                           fontFamily: 'Roboto',
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xFFdaa520)
+                                          color: mainTextColor,
                                         ),
                                       ),
                                     ),
@@ -107,7 +107,7 @@ class _PerfilPageState extends State<PerfilPage> {
                               fontSize: 22,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w500,
-                              color: Color(0xFFdaa520)//mainTextColor,
+                              color: mainTextColor,//mainTextColor,
                             ),
                           ),
                         ),
@@ -145,13 +145,13 @@ class _PerfilPageState extends State<PerfilPage> {
                                         fontSize: 18,
                                         fontFamily: 'Roboto',
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xFFdaa520),
+                                        color: mainTextColor,
                                       ),
                                     ),
                                     Icon(
                                       Icons.person,
                                       size: 25,
-                                      color: Color(0xFFdaa520),
+                                      color: mainTextColor,
                                     )
                                   ],
                                 ),
@@ -193,13 +193,13 @@ class _PerfilPageState extends State<PerfilPage> {
                                         fontSize: 18,
                                         fontFamily: 'Roboto',
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xFFdaa520)
+                                        color: mainTextColor,
                                       ),
                                     ),
                                     Icon(
                                       FontAwesome5.calendar_alt,
                                       size: 25,
-                                      color: Color(0xFFdaa520),
+                                      color: mainTextColor,
                                     )
                                   ],
                                 ),
@@ -242,13 +242,13 @@ class _PerfilPageState extends State<PerfilPage> {
                                         fontSize: 18,
                                         fontFamily: 'Roboto',
                                         fontWeight: FontWeight.w500,
-                                        color: Color(0xFFdaa520)
+                                        color: mainTextColor,
                                       ),
                                     ),
                                     Icon(
                                       FontAwesome5.sign_out_alt,
                                       size: 25,
-                                      color: Color(0xFFdaa520),
+                                      color: mainTextColor,
                                     )
                                   ],
                                 ),

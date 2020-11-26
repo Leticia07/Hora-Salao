@@ -10,7 +10,7 @@ const Color darkGrey = Color(0xFF2d2d2d);
 const Color white = Color(0xFFFFFFFF);
 
 const Color mainBgColor = Color(0xFFFFFFFF);
-const Color mainTextColor = Color(0xFF2d2d2d);
+const Color mainTextColor = Color(0xFF000000);
 const Color black = Color(0xFF000000);
 const Color softRed = Color(0xFFf5776e);
 

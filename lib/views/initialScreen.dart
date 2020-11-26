@@ -118,7 +118,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                          color: Color(0xFFdaa520),
+                          color: white,//Color(0xFFdaa520),
                           fontSize: 20.0,
                           fontStyle: FontStyle.italic,
                           fontFamily: 'Raleway',
@@ -145,7 +145,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       child: Text(
                         "Cadastre-se",
                         style: TextStyle(
-                          color: Color(0xFFdaa520),
+                          color: white,//Color(0xFFdaa520),
                           fontSize: 20.0,
                           fontStyle: FontStyle.italic,
                           fontFamily: 'Raleway',

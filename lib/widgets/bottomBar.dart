@@ -24,11 +24,11 @@ class _BottomBarState extends State<BottomBar> {
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: white,
+            color: Colors.black38,//white,
             width: 0.5,
           ),
         ),
-        color: darkGrey,
+        color: white,//darkGrey,
       ),
       child: Padding(
         padding: EdgeInsets.only(
@@ -52,12 +52,12 @@ class _BottomBarState extends State<BottomBar> {
                     Icon(
                       FontAwesome5.search,
                       size: MediaQuery.of(context).size.width * 0.05,
-                      color: this.widget.screen == 1 ? softRed : white,
+                      color: this.widget.screen == 1 ? softRed : mainTextColor,
                     ),
                     Text(
                       "Explorar",
                       style: TextStyle(
-                        color: white,
+                        color: mainTextColor,//white,
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w500,
@@ -80,12 +80,12 @@ class _BottomBarState extends State<BottomBar> {
                     Icon(
                       FontAwesome5.calendar_times,
                       size: MediaQuery.of(context).size.width * 0.05,
-                      color: this.widget.screen == 2 ? softRed : white,
+                      color: this.widget.screen == 2 ? softRed : mainTextColor,
                     ),
                     Text(
                       "Horários",
                       style: TextStyle(
-                        color: white,
+                        color: mainTextColor,//white,
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w500,
@@ -112,12 +112,12 @@ class _BottomBarState extends State<BottomBar> {
                     Icon(
                       tipoUsuario != "salao" ? FontAwesome.chat : FontAwesome5.users,
                       size: MediaQuery.of(context).size.width * 0.05,
-                      color: this.widget.screen == 3 ? softRed : white,
+                      color: this.widget.screen == 3 ? softRed : mainTextColor,
                     ),
                     Text(
                       tipoUsuario != "salao" ? "Mensagens" : "Profissionais",
                       style: TextStyle(
-                        color: white,
+                        color: mainTextColor,//white,
                         fontSize: MediaQuery.of(context).size.width * 0.0398,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w500,
@@ -140,12 +140,12 @@ class _BottomBarState extends State<BottomBar> {
                     Icon(
                       FontAwesome5.user_circle,
                       size: MediaQuery.of(context).size.width * 0.05,
-                      color: this.widget.screen == 4 ? softRed : white,
+                      color: this.widget.screen == 4 ? softRed : mainTextColor,
                     ),
                     Text(
                       "Perfil",
                       style: TextStyle(
-                        color: white,
+                        color: mainTextColor,//white,
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w500,
