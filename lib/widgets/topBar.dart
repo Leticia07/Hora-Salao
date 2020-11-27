@@ -23,13 +23,13 @@ class _TopBarState extends State<TopBar> {
       width: MediaQuery.of(context).size.width * 1,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-        color: white, //darkGrey,
-        border: Border(
-          bottom: BorderSide(
-            color: this.widget.text != null ? white : Colors.transparent,
-            width: this.widget.text != null ? 0.515 : 0.0,
-          ),
-        ),
+        color: Colors.transparent,//white, //darkGrey,
+        // border: Border(
+        //   bottom: BorderSide(
+        //     color: this.widget.text != null ? white : Colors.transparent,
+        //     width: this.widget.text != null ? 0.515 : 0.0,
+        //   ),
+        // ),
       ),
       child: Padding(
         padding: EdgeInsets.only(

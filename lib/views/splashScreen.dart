@@ -50,13 +50,13 @@ class _SplashScreenState extends State<SplashScreen> {
       DeviceOrientation.portraitUp,
     ]);
     return Container(
-      color: darkGrey,
+      color: white,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Center(
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.5,
-          child: Image.asset('lib/assets/images/logo.jpg'),
+          width: MediaQuery.of(context).size.width * 0.6,
+          child: Image.asset('lib/assets/images/logo.png'),
         ),
       ),
     );

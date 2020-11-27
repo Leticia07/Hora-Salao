@@ -51,7 +51,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 flutter_icons:
-  image_path: "icon/logo.jpg"
+  image_path: "icon/logo.png"
   android: true
   ios: true
 
@@ -66,7 +66,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/assets/images/logo.jpg
+    - lib/assets/images/logo.png
     - lib/assets/images/salao1.jpg
     - lib/assets/images/salao2.jpg
     - lib/assets/images/salao3.jpg

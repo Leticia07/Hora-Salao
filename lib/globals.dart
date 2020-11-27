@@ -14,10 +14,12 @@ const Color mainTextColor = Color(0xFF000000);
 const Color black = Color(0xFF000000);
 const Color softRed = Color(0xFFf5776e);
 
+const Color cardColor = Color(0xFFE9E6E3);
+
 String collectionCliente = "clientes";
 String collectionSalao = "saloes";
 String collectionProfissional = "profissionais";
-User user; 
+User user;
 Cliente cliente;
 Salao salao;
 Profissional profissional;

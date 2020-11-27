@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,8 +8,10 @@ import 'package:hora_salao/controllers/parlor.dart';
 import 'package:hora_salao/controllers/professional.dart';
 import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/views/showSalao.dart';
+import 'package:hora_salao/widgets/backgroundImage.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 import 'package:hora_salao/widgets/homeParlor.dart';
+import 'package:hora_salao/widgets/parlorCard.dart';
 import 'package:hora_salao/widgets/topBar.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     if (tipoUsuario == "cliente") {
       loadParlors().then((value) {
         setState(() {
-          parlors = value.documents;
+          parlors = value;
         });
       });
     } else if (tipoUsuario == "salao") {
@@ -54,142 +59,85 @@ class _HomePageState extends State<HomePage> {
       DeviceOrientation.portraitUp,
     ]);
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: mainBgColor,//darkGrey,
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.9,
+      body: Stack(
+        children: [
+          Positioned(
+            child: BackgroundImage(),
+          ),
+          Positioned(
+            child: Container(
               width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+              ), //darkGrey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [ 
-                  TopBar(
-                    arrow: false,
-                    forgetPassButton: false,
-                    text: tipoUsuario == "cliente"
-                        ? "Salões disponíveis"
-                        : tipoUsuario == "salao"
-                            ? salao.nomeSalao
-                            : profissional.nomePessoa,
-                  ),
-                  tipoUsuario == "salao"
-                      ? Container(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          height: MediaQuery.of(context).size.height * 0.78,
-                          child: ListView(
-                            children: [
-                              HomeParlor(),
-                            ],
-                          ))
-                      : Container(),
-                  tipoUsuario == "cliente" ? Container(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.9,
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.78,
-                    child: ListView.builder(
-                      itemCount: parlors.length,
-                      itemBuilder: (context, index) {
-                        var doc = parlors[index].data;
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ShowSalao(salao: doc)));
-                          },
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.02,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TopBar(
+                          arrow: false,
+                          forgetPassButton: false,
+                          text: tipoUsuario == "cliente"
+                              ? "Salões disponíveis"
+                              : tipoUsuario == "salao"
+                                  ? salao.nomeSalao
+                                  : profissional.nomePessoa,
+                        ),
+                        tipoUsuario == "salao"
+                            ? Container(
+                                width: MediaQuery.of(context).size.width * 1,
+                                height: MediaQuery.of(context).size.height * 0.8,
                                 decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      blurRadius: 10.0, // soften the shadow
-                                      spreadRadius: 0.5, //extend the shadow
-                                      offset: Offset(
-                                        5.0, // Move to right 10  horizontally
-                                        MediaQuery.of(context).size.height * 0.005, // Move to bottom 5 Vertically
-                                      ),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: mainBgColor,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.8,
-                                        child: Text(
-                                          doc["name"],
-                                          style: TextStyle(
-                                            color: darkGrey,
-                                            fontSize: 20.0,
-                                            fontStyle: FontStyle.italic,
-                                            fontFamily: 'Raleway',
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: MediaQuery.of(context).size.height * 0.02,
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.8,
-                                        child: Text(
-                                          "${doc["neighborhood"]} - ${doc['zip code']}",
-                                          style: TextStyle(
-                                            color: darkGrey,
-                                            fontSize: 14.0,
-                                            fontStyle: FontStyle.italic,
-                                            fontFamily: 'Raleway',
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.8,
-                                        child: Text(
-                                          "${doc["city"]} - ${doc['uf']}",
-                                          style: TextStyle(
-                                            color: darkGrey,
-                                            fontSize: 14.0,
-                                            fontStyle: FontStyle.italic,
-                                            fontFamily: 'Raleway',
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ],
+                                  color: white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
                                   ),
                                 ),
-                              ),
-                              index == parlors.length - 1
-                                  ? SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.05,
-                                    )
-                                  : SizedBox()
-                            ],
-                          ),
-                        );
-                      },
+                                child: ListView(
+                                  children: [
+                                    HomeParlor(),
+                                  ],
+                                ))
+                            : Container(),
+                        tipoUsuario == "cliente"
+                            ? Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height * 0.8,
+                                //color: white, //Colors.transparent,
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: ListView.builder(
+                                  itemCount: parlors.length,
+                                  itemBuilder: (context, index) {
+                                    Map doc = parlors[index].data();
+                                    //return Container();
+                                    return ParlorCard(doc, index, parlors);
+                                  },
+                                ),
+                              )
+                            : Container(),
+                      ],
                     ),
-                  ) : Container(),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  BottomBar(
+                    screen: 1,
                   ),
                 ],
               ),
             ),
-            BottomBar(
-              screen: 1,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
