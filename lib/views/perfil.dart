@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 
 import '../globals.dart';
@@ -208,6 +209,54 @@ class _PerfilPageState extends State<PerfilPage> {
                           ),
                         ),
                       ),
+                      tipoUsuario == "salao" ? SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ) : SizedBox(),
+                      tipoUsuario == "salao" ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/editServices");
+                          },
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 1.0,
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                              ),
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: MediaQuery.of(context).size.height * 0.02,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Meus Serviços",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w500,
+                                        color: mainTextColor,
+                                      ),
+                                    ),
+                                    Icon(
+                                      FontAwesome.scissors,
+                                      size: 25,
+                                      color: mainTextColor,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ) : SizedBox(),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),

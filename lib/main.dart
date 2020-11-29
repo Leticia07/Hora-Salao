@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hora_salao/views/agenda.dart';
+import 'package:hora_salao/views/editServices.dart';
 import 'package:hora_salao/views/home.dart';
 import 'package:hora_salao/views/EditPerfil.dart';
 import 'package:hora_salao/views/initialScreen.dart';
@@ -10,6 +11,7 @@ import 'package:hora_salao/views/login.dart';
 import 'package:hora_salao/views/forgotPassword.dart';
 import 'package:hora_salao/views/messages.dart';
 import 'package:hora_salao/views/newProfessional.dart';
+import 'package:hora_salao/views/newService.dart';
 import 'package:hora_salao/views/professional.dart';
 import 'package:hora_salao/views/signup.dart';
 import 'package:hora_salao/views/splashScreen.dart';
@@ -55,6 +57,8 @@ class MyApp extends StatelessWidget {
         '/messages': (context) => Message(),
         '/profissionais': (context) => Professional(),
         '/newProfessional': (context) => NewProfessional(),
+        '/editServices': (context) => EditServices(),
+        '/newService': (context) => NewService(),
       },
     );
   }

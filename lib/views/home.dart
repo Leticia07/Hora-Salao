@@ -1,13 +1,11 @@
 import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hora_salao/controllers/parlor.dart';
 import 'package:hora_salao/controllers/professional.dart';
 import 'package:hora_salao/globals.dart';
-import 'package:hora_salao/views/showSalao.dart';
 import 'package:hora_salao/widgets/backgroundImage.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 import 'package:hora_salao/widgets/homeParlor.dart';
@@ -101,6 +99,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: ListView(
                                   children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.01,
+                                    ),
                                     HomeParlor(),
                                   ],
                                 ))
