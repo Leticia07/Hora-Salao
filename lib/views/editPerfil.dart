@@ -39,7 +39,10 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              TopBar(forgetPassButton: false, text: "Editar Perfil"),
+              TopBar(
+                forgetPassButton: false,
+                text: "Editar Perfil",
+              ),
               Container(
                 color: mainBgColor,
                 height: MediaQuery.of(context).size.height * 0.9,
@@ -731,114 +734,6 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                                   },
                                 ),
                               ),
-                              tipoUsuario == "salao"
-                                  ? SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.05,
-                                    )
-                                  : SizedBox(),
-                              tipoUsuario == "salao"
-                                  ? FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Container(
-                                        width: MediaQuery.of(context).size.width * 0.8,
-                                        child: Text(
-                                          "Os serviços aparecerão quando um cliente acessar o perfil do seu salão",
-                                          style: TextStyle(
-                                            color: mainTextColor,
-                                            fontSize: 18.0,
-                                            fontStyle: FontStyle.normal,
-                                            fontFamily: 'Raleway',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
-                              tipoUsuario == "salao"
-                                  ? SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.02,
-                                    )
-                                  : SizedBox(),
-                              tipoUsuario == "salao"
-                                  ? FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Container(
-                                        width: MediaQuery.of(context).size.width * 0.8,
-                                        child: Text(
-                                          "Os serviços devem estar separados por vírgulas",
-                                          style: TextStyle(
-                                            color: mainTextColor,
-                                            fontSize: 14.0,
-                                            fontStyle: FontStyle.normal,
-                                            fontFamily: 'Raleway',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
-                              tipoUsuario == "salao"
-                                  ? SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.02,
-                                    )
-                                  : SizedBox(),
-                              tipoUsuario == "salao"
-                                  ? Container(
-                                      width: MediaQuery.of(context).size.width * 0.8,
-                                      child: TextFormField(
-                                        decoration: const InputDecoration(
-                                          labelText: "Serviços",
-                                          labelStyle: TextStyle(
-                                            color: mainTextColor,
-                                          ),
-                                          contentPadding: EdgeInsets.all(0),
-                                          hintText: "Cabelo, unhas",
-                                          hintStyle: TextStyle(
-                                            color: mainTextColor,
-                                            fontSize: 14,
-                                            fontFamily: 'Roboto',
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: mainTextColor,
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: mainTextColor,
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                        ),
-                                        style: TextStyle(
-                                          color: mainTextColor,
-                                          fontSize: 14,
-                                          letterSpacing: MediaQuery.of(context).size.width * 0.002,
-                                          fontFamily: 'Roboto',
-                                        ),
-                                        keyboardType: TextInputType.text,
-                                        initialValue: salao.servicestoString(),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            Fluttertoast.showToast(msg: "Insira seus serviços");
-                                            return "";
-                                          }
-                                        },
-                                        onChanged: (value) => {
-                                          _formKey.currentState.save(),
-                                        },
-                                        onSaved: (input) => {
-                                          _formKey.currentState.setState(() {
-                                            info["servicos"] = input;
-                                          })
-                                        },
-                                      ),
-                                    )
-                                  : Container(),
                               SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.05,
                               ),

@@ -29,12 +29,19 @@ class Login {
               Endereco end = new Endereco(salaoDoc.data()['street'], salaoDoc.data()['city'], salaoDoc.data()['uf'], salaoDoc.data()['neighborhood'], salaoDoc.data()['zip code'], salaoDoc.data()['number'].toString());
 
               salao = new Salao(salaoDoc.data()['name'], salaoDoc.data()['email'], salaoDoc.data()['phone'], salaoDoc.data()["cnpj"], end);
-              if (salaoDoc.data()['servicos'] != null && salaoDoc.data()['servicos'].length > 0) {
-                for (int i = 0; i < salaoDoc.data()['servicos'].length; i++) {
-                  Servicos s = new Servicos(salaoDoc.data()['servicos'][i], 0.0);
+              var servicos = await FirebaseFirestore.instance.collection(collectionSalao).doc(salaoDoc.data()['email']).collection("servicos").get();
+              if (servicos != null) {
+                for (var i = 0; i < servicos.docs.length; i++) {
+                  Servicos s = new Servicos(servicos.docs[i].id.toString(), servicos.docs[i].data()['value'].toDouble());
                   salao.addServico(s);
                 }
               }
+              // if (salaoDoc.data()['servicos'] != null && salaoDoc.data()['servicos'].length > 0) {
+              //   for (int i = 0; i < salaoDoc.data()['servicos'].length; i++) {
+              //     Servicos s = new Servicos(salaoDoc.data()['servicos'][i], 0.0);
+              //     salao.addServico(s);
+              //   }
+              // }
               tipoUsuario = "salao";
 
               if (salaoDoc.data()['profissionais'] != null) {

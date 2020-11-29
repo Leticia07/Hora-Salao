@@ -9,13 +9,15 @@ import 'package:hora_salao/models/profissional.dart';
 class Signup {
   Future signupProfessional(info) async {
     try {
-      FirebaseApp app = await Firebase.initializeApp(name: info['email'], options: Firebase.app().options);
-      print(app);
-      await FirebaseAuth.instanceFor(app: app).createUserWithEmailAndPassword(email: info['email'], password: info['senha']).then((value) async {
-        if (value != null) {
-          await FirebaseFirestore.instanceFor(app: app).collection(collectionProfissional).doc(info['email']).set({"name": info["nome"], "cpf": info["CPF"], "phone": info["telefone"], "email": info["email"], "zip code": "", "street": "", "number": "", "neighborhood": "", "city": "", "uf": "", "beginHour": info['beginHour'], "endHour": info['endHour']});
+      if (secondaryApp == null) {
+        secondaryApp = await Firebase.initializeApp(name: "secondaryApp", options: Firebase.app().options);
+      }
 
-          await FirebaseFirestore.instanceFor(app: app).collection(collectionSalao).doc(salao.emailSalao).update({
+      await FirebaseAuth.instanceFor(app: secondaryApp).createUserWithEmailAndPassword(email: info['email'], password: info['senha']).then((value) async {
+        if (value != null) {
+          await FirebaseFirestore.instanceFor(app: secondaryApp).collection(collectionProfissional).doc(info['email']).set({"name": info["nome"], "cpf": info["CPF"], "phone": info["telefone"], "email": info["email"], "zip code": "", "street": "", "number": "", "neighborhood": "", "city": "", "uf": "", "beginHour": info['beginHour'], "endHour": info['endHour']});
+
+          await FirebaseFirestore.instanceFor(app: secondaryApp).collection(collectionSalao).doc(salao.emailSalao).update({
             "profissionais": FieldValue.arrayUnion([info['email']]),
           });
 
@@ -27,7 +29,7 @@ class Signup {
           return false;
         }
       });
-      await app?.delete();
+      //await app?.delete();
       return true;
     } on PlatformException catch (e) {
       print(e);
@@ -41,7 +43,12 @@ class Signup {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(email: info['email'], password: info['senha']).then((value) async {
         if (value != null) {
-          await FirebaseFirestore.instance.collection(collectionSalao).doc(info['email']).set({"name": info["nome"], "cnpj": info["CPF"], "phone": info["telefone"], "email": info["email"], "zip code": info["CEP"], "street": info["rua"], "number": info["numero"], "neighborhood": info["bairro"], "city": info["cidade"], "uf": info["estado"], "servicos": info["servicos"].toString().split(",")});
+          await FirebaseFirestore.instance.collection(collectionSalao).doc(info['email']).set({"name": info["nome"], "cnpj": info["CPF"], "phone": info["telefone"], "email": info["email"], "zip code": info["CEP"], "street": info["rua"], "number": info["numero"], "neighborhood": info["bairro"], "city": info["cidade"], "uf": info["estado"]});
+          for (var i = 0; i < info["servicos"].toString().split(",").length; i++) {
+            await FirebaseFirestore.instance.collection(collectionSalao).doc(info['email']).collection("servicos").doc(info["servicos"].toString().split(",")[i]).set({
+              "value": 0.0,
+            });
+          }
         } else {
           return false;
         }

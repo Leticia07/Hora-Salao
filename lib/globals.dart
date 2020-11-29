@@ -25,6 +25,8 @@ Salao salao;
 Profissional profissional;
 String tipoUsuario;
 
+FirebaseApp secondaryApp;
+
 FirebaseOptions firebaseOptions = const FirebaseOptions(
   appId: '1:880867377976:android:3db97fa67482e2121db7cd',
   apiKey: 'AIzaSyCRVQOS1haM66t_R-oFZTrWhkUtzJEeVbg',
