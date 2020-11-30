@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hora_salao/controllers/parlor.dart';
 import 'package:hora_salao/globals.dart';
+import 'package:hora_salao/views/reservation.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 import 'package:hora_salao/widgets/topBar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,21 +19,31 @@ class ShowSalao extends StatefulWidget {
 }
 
 class _ShowSalaoState extends State<ShowSalao> {
+  Parlor parlorController = new Parlor();
+  var services = [];
 
   @override
   void initState() {
-    //print(this.widget.salao);
+    readServices();
     super.initState();
+  }
+
+  Future readServices() async {
+    await parlorController.readServices(this.widget.salao['email']).then((value) {
+      setState(() {
+        services = value;
+      });
+    });
   }
 
   List<Widget> servicos() {
     List<Widget> servicos = new List<Widget>();
 
-    if (this.widget.salao['servicos'] == null || this.widget.salao['servicos'].length == 0) {
+    if (services == null || services.length == 0) {
       return [Container()];
     }
 
-    for (int i = 0; i < this.widget.salao['servicos'].length; i++) {
+    for (int i = 0; i < services.length; i++) {
       servicos.add(
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.02,
@@ -43,7 +55,7 @@ class _ShowSalaoState extends State<ShowSalao> {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.8,
             child: Text(
-              "${this.widget.salao['servicos'][i]}",
+              "${services[i]['name']} - R\$ ${double.tryParse(services[i]['value'])}",
               style: TextStyle(
                 fontSize: 16.0,
                 fontFamily: 'Roboto',
@@ -83,6 +95,47 @@ class _ShowSalaoState extends State<ShowSalao> {
                     children: [
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: FlatButton(
+                            padding: EdgeInsets.only(
+                              bottom: 20,
+                            ),
+                            onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Reservation(
+                                    salao: this.widget.salao,
+                                    services: services,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: darkGrey,
+                                border: Border.all(
+                                  color: Color(0xFFA3A3A372),
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              height: 44,
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: Text(
+                                "Agendar",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,

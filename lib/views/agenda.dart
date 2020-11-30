@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hora_salao/controllers/reservation.dart';
 import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 import 'package:hora_salao/widgets/topBar.dart';
@@ -10,6 +11,24 @@ class Agenda extends StatefulWidget {
 }
 
 class _AgendaState extends State<Agenda> {
+  ReservationController reservationController = new ReservationController();
+  var reservations = [];
+
+  @override
+  void initState() {
+    loadAgenda();
+    super.initState();
+  }
+
+  Future loadAgenda() async {
+    await reservationController.readOne(cliente.emailPessoa).then((value) {
+      setState(() {
+        reservations = value;
+      });
+      print(reservations[0].data());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
