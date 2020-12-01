@@ -23,9 +23,19 @@ class ReservationController {
   }
 
   Future readOne(email) async {
-    var reservation = await FirebaseFirestore.instance.collection("horarios").where('cliente', isEqualTo: email).get();
+    if (tipoUsuario == "cliente") {
+      var reservation = await FirebaseFirestore.instance.collection("horarios").where('cliente', isEqualTo: email).get();
 
-    return reservation.docs;
+      return reservation.docs;
+    } else if (tipoUsuario == "salao") {
+      var reservation = await FirebaseFirestore.instance.collection("horarios").where('salao', isEqualTo: email).get();
+
+      return reservation.docs;
+    } else {
+      var reservation = await FirebaseFirestore.instance.collection("horarios").where('profissional', isEqualTo: email).get();
+
+      return reservation.docs;
+    }
   }
 
   Future delete(docId) async {
@@ -37,13 +47,13 @@ class ReservationController {
   Future summary() async {
     Map summaryInfo = new Map();
     var email = "";
-    
+
     if (tipoUsuario == "cliente") {
       email = cliente.emailPessoa;
     } else if (tipoUsuario == "salao") {
       email = salao.emailSalao;
     }
-
+    
     var reservations;
     await readOne(email).then((value) {
       reservations = value;
@@ -74,6 +84,9 @@ class ReservationController {
         });
       }
     });
+
+    summaryInfo['numberOfReservations'] = numberOfReservations;
+    summaryInfo['total'] = total;
 
     print(summaryInfo);
     return summaryInfo;

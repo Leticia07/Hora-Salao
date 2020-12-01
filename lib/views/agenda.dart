@@ -23,11 +23,25 @@ class _AgendaState extends State<Agenda> {
   }
 
   Future loadAgenda() async {
-    await reservationController.readOne(cliente.emailPessoa).then((value) {
-      setState(() {
-        reservations = value;
+    if (tipoUsuario == "cliente") {
+      await reservationController.readOne(cliente.emailPessoa).then((value) {
+        setState(() {
+          reservations = value;
+        });
       });
-    });
+    } else if (tipoUsuario == "salao") {
+      await reservationController.readOne(salao.emailSalao).then((value) {
+        setState(() {
+          reservations = value;
+        });
+      });
+    } else {
+      await reservationController.readOne(profissional.emailPessoa).then((value) {
+        setState(() {
+          reservations = value;
+        });
+      });
+    }
   }
 
   String formatDate(d) {
