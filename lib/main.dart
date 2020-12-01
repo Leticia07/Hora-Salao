@@ -9,7 +9,7 @@ import 'package:hora_salao/views/EditPerfil.dart';
 import 'package:hora_salao/views/initialScreen.dart';
 import 'package:hora_salao/views/login.dart';
 import 'package:hora_salao/views/forgotPassword.dart';
-import 'package:hora_salao/views/messages.dart';
+import 'package:hora_salao/views/summary.dart';
 import 'package:hora_salao/views/newProfessional.dart';
 import 'package:hora_salao/views/newService.dart';
 import 'package:hora_salao/views/professional.dart';
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         '/editPerfil': (context) => EditPerfilPage(),
         '/perfil': (context) => PerfilPage(),
         '/agenda': (context) => Agenda(),
-        '/messages': (context) => Message(),
+        '/summary': (context) => Summary(),
         '/profissionais': (context) => Professional(),
         '/newProfessional': (context) => NewProfessional(),
         '/editServices': (context) => EditServices(),

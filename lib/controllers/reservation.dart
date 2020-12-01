@@ -7,6 +7,7 @@ class ReservationController {
     await FirebaseFirestore.instance.collection("horarios").add({
       "cliente": info['cliente'],
       "salao": info['salao'],
+      "nomeSalao": info['nomeSalao'],
       "profissional": info['profissional'],
       "servicos": info['servicos'],
       "day": info['day'],
@@ -21,7 +22,13 @@ class ReservationController {
 
   Future readOne(email) async {
     var reservation = await FirebaseFirestore.instance.collection("horarios").where('cliente', isEqualTo: email).get();
-    
+
     return reservation.docs;
+  }
+
+  Future delete(docId) async {
+    await FirebaseFirestore.instance.collection("horarios").doc(docId).delete();
+
+    return true;
   }
 }

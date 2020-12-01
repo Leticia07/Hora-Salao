@@ -4,12 +4,12 @@ import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 import 'package:hora_salao/widgets/topBar.dart';
 
-class Message extends StatefulWidget {
+class Summary extends StatefulWidget {
   @override
-  _MessageState createState() => _MessageState();
+  _SummaryState createState() => _SummaryState();
 }
 
-class _MessageState extends State<Message> {
+class _SummaryState extends State<Summary> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -24,7 +24,7 @@ class _MessageState extends State<Message> {
           children: [
             TopBar(
               forgetPassButton: false,
-              text: "Suas Mensagens",
+              text: "Resumo",
             ),
             Container(
               width: MediaQuery.of(context).size.width,

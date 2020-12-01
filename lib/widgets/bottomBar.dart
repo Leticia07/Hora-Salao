@@ -99,7 +99,7 @@ class _BottomBarState extends State<BottomBar> {
             GestureDetector(
               onTap: () {
                 if (tipoUsuario != "salao") {
-                  Navigator.pushNamed(context, "/messages");
+                  Navigator.pushNamed(context, "/summary");
                 } else {
                   Navigator.pushNamed(context, "/profissionais");
                 }
@@ -110,12 +110,12 @@ class _BottomBarState extends State<BottomBar> {
                 child: Column(
                   children: [
                     Icon(
-                      tipoUsuario != "salao" ? FontAwesome.chat : FontAwesome5.users,
+                      tipoUsuario != "salao" ? FontAwesome5.list : FontAwesome5.users,
                       size: MediaQuery.of(context).size.width * 0.05,
                       color: this.widget.screen == 3 ? softRed : mainTextColor,
                     ),
                     Text(
-                      tipoUsuario != "salao" ? "Mensagens" : "Profissionais",
+                      tipoUsuario != "salao" ? "Resumo" : "Profissionais",
                       style: TextStyle(
                         color: mainTextColor,//white,
                         fontSize: MediaQuery.of(context).size.width * 0.0398,

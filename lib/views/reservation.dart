@@ -33,6 +33,7 @@ class _ReservationState extends State<Reservation> {
   void initState() {
     reservationInfo["cliente"] = cliente.emailPessoa;
     reservationInfo["salao"] = this.widget.salao["email"];
+    reservationInfo["nomeSalao"] = this.widget.salao["name"];
     reservationInfo["servicos"] = new Map();
     super.initState();
   }

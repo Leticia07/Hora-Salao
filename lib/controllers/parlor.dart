@@ -19,4 +19,9 @@ class Parlor {
 
     return servicos;
   }
+
+  Future<DocumentSnapshot> readOne(email) async {
+    var p = await FirebaseFirestore.instance.collection(collectionSalao).doc(email).get();
+    return p;
+  }
 }
