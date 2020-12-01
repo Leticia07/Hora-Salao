@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                                   ? salao.nomeSalao
                                   : profissional.nomePessoa,
                         ),
-                        tipoUsuario == "salao"
+                        tipoUsuario == "salao" || tipoUsuario == "profissional"
                             ? Container(
                                 width: MediaQuery.of(context).size.width * 1,
                                 height: MediaQuery.of(context).size.height * 0.8,

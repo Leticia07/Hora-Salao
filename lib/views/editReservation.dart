@@ -6,6 +6,7 @@ import 'package:hora_salao/controllers/parlor.dart';
 import 'package:hora_salao/controllers/person.dart';
 import 'package:hora_salao/controllers/reservation.dart';
 import 'package:hora_salao/globals.dart';
+import 'package:hora_salao/views/allocateProfessional.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
 import 'package:hora_salao/widgets/loading.dart';
 import 'package:hora_salao/widgets/topBar.dart';
@@ -32,7 +33,7 @@ class _EditReservationState extends State<EditReservation> {
 
   @override
   void initState() {
-    if (tipoUsuario != "salao") {
+    if (tipoUsuario == "cliente") {
       parlorController.readOne(this.widget.doc.data()['salao']).then((value) {
         setState(() {
           p = value;
@@ -103,7 +104,13 @@ class _EditReservationState extends State<EditReservation> {
               children: [
                 TopBar(
                   forgetPassButton: false,
-                  text: tipoUsuario != "salao" ? p != null ? "Reserva em: ${p['name']}" : "Reserva de: " : p != null ? "Reserva de: ${p['name'].toString().split(" ")[0]}" : "Reserva de: ",
+                  text: tipoUsuario == "cliente"
+                      ? p != null
+                          ? "Reserva em: ${p['name']}"
+                          : "Reserva de: "
+                      : p != null
+                          ? "Reserva de: ${p['name'].toString().split(" ")[0]}"
+                          : "Reserva de: ",
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -163,7 +170,7 @@ class _EditReservationState extends State<EditReservation> {
                               ),
                             ),
                           ),
-                          tipoUsuario != "salao"
+                          tipoUsuario == "cliente"
                               ? Column(
                                   children: [
                                     SizedBox(
@@ -354,48 +361,85 @@ class _EditReservationState extends State<EditReservation> {
                               ],
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: FlatButton(
-                                padding: EdgeInsets.only(
-                                  bottom: 20,
-                                ),
-                                onPressed: () async {
-                                  setState(() {
-                                    loading = true;
-                                  });
-                                  reservationController.delete(this.widget.doc.id).then((value) {
-                                    setState(() {
-                                      loading = false;
-                                    });
-                                    Fluttertoast.showToast(msg: "Reserva cancelada!");
-                                    Navigator.pushReplacementNamed(context, "/agenda");
-                                  });
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                      color: Colors.red,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  height: 44,
+                          tipoUsuario == "salao"
+                              ? Container(
                                   width: MediaQuery.of(context).size.width * 0.8,
-                                  child: Text(
-                                    "Cancelar Reserva",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: white,
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: FlatButton(
+                                      padding: EdgeInsets.only(
+                                        bottom: 20,
+                                      ),
+                                      onPressed: () async {
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AllocateProfessional(doc: this.widget.doc)));
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          color: darkGrey,
+                                          border: Border.all(
+                                            color: darkGrey,
+                                          ),
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
+                                        height: 44,
+                                        width: MediaQuery.of(context).size.width * 0.8,
+                                        child: Text(
+                                          "Alocar Profissional",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: white,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ),
+                                )
+                              : Container(),
+                          tipoUsuario != "profissional"
+                              ? Container(
+                                  width: MediaQuery.of(context).size.width * 0.8,
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: FlatButton(
+                                      padding: EdgeInsets.only(
+                                        bottom: 20,
+                                      ),
+                                      onPressed: () async {
+                                        setState(() {
+                                          loading = true;
+                                        });
+                                        reservationController.delete(this.widget.doc.id).then((value) {
+                                          setState(() {
+                                            loading = false;
+                                          });
+                                          Fluttertoast.showToast(msg: "Reserva cancelada!");
+                                          Navigator.pushReplacementNamed(context, "/agenda");
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          border: Border.all(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
+                                        height: 44,
+                                        width: MediaQuery.of(context).size.width * 0.8,
+                                        child: Text(
+                                          "Cancelar Reserva",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.02,
                           ),
@@ -410,7 +454,7 @@ class _EditReservationState extends State<EditReservation> {
               ],
             ),
           ),
-          loading
+          loading || p == null
               ? Positioned(
                   child: Loading(),
                 )

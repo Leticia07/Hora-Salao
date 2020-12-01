@@ -23,6 +23,14 @@ class ReservationController {
     return true;
   }
 
+  Future update(info) async {
+    await FirebaseFirestore.instance.collection("horarios").doc(info['id']).update({
+      "profissional": info['email'],
+    });
+
+    return true;
+  }
+
   Future readOne(email) async {
     if (tipoUsuario == "cliente") {
       var reservation = await FirebaseFirestore.instance.collection("horarios").where('cliente', isEqualTo: email).get();
@@ -53,8 +61,10 @@ class ReservationController {
       email = cliente.emailPessoa;
     } else if (tipoUsuario == "salao") {
       email = salao.emailSalao;
+    } else {
+      email = profissional.emailPessoa;
     }
-    
+
     var reservations;
     await readOne(email).then((value) {
       reservations = value;

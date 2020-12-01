@@ -293,7 +293,7 @@ class _HomeParlorState extends State<HomeParlor> {
         PieChartSectionData(
           color: value,
           value: completeSummary[key] * 100 / completeSummary['total'],
-          title: '${completeSummary[key] * 100 / completeSummary['total']}%',
+          title: '${(completeSummary[key] * 100 / completeSummary['total']).toStringAsFixed(2)}%',
           radius: radius,
           titleStyle: TextStyle(
             fontSize: fontSize,

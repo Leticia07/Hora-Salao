@@ -46,7 +46,7 @@ class _BottomBarState extends State<BottomBar> {
               },
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,
-                width: MediaQuery.of(context).size.width * 0.235,
+                width: tipoUsuario != "profissional" ? MediaQuery.of(context).size.width * 0.235 : MediaQuery.of(context).size.width * 0.31,
                 child: Column(
                   children: [
                     Icon(
@@ -74,7 +74,7 @@ class _BottomBarState extends State<BottomBar> {
               },
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,
-                width: MediaQuery.of(context).size.width * 0.235,
+                width: tipoUsuario != "profissional" ? MediaQuery.of(context).size.width * 0.235 : MediaQuery.of(context).size.width * 0.31,
                 child: Column(
                   children: [
                     Icon(
@@ -96,7 +96,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
               ),
             ),
-            GestureDetector(
+            tipoUsuario != "profissional" ? GestureDetector(
               onTap: () {
                 if (tipoUsuario != "salao") {
                   Navigator.pushNamed(context, "/summary");
@@ -127,14 +127,14 @@ class _BottomBarState extends State<BottomBar> {
                   ],
                 ),
               ),
-            ),
+            ) : Container(),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, "/perfil");
               },
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,
-                width: MediaQuery.of(context).size.width * 0.235,
+                width: tipoUsuario != "profissional" ? MediaQuery.of(context).size.width * 0.235 : MediaQuery.of(context).size.width * 0.31,
                 child: Column(
                   children: [
                     Icon(
