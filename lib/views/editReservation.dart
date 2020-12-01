@@ -170,7 +170,7 @@ class _EditReservationState extends State<EditReservation> {
                               ),
                             ),
                           ),
-                          tipoUsuario == "cliente"
+                          tipoUsuario == "cliente" && p != null
                               ? Column(
                                   children: [
                                     SizedBox(
