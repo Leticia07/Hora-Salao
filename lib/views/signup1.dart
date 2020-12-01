@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hora_salao/views/signup1.dart';
 import 'package:hora_salao/widgets/backgroundImage.dart';
 import 'package:hora_salao/widgets/loading.dart';
 import 'package:hora_salao/widgets/topBar.dart';
@@ -9,23 +8,26 @@ import 'package:hora_salao/controllers/signup.dart';
 
 import '../globals.dart';
 
-class SignupPage extends StatefulWidget {
+class Signup1Page extends StatefulWidget {
+  final info, isClient;
+
+  Signup1Page({
+    this.info,
+    this.isClient,
+  });
+
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _Signup1PageState createState() => _Signup1PageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _Signup1PageState extends State<Signup1Page> {
   final _formKey = GlobalKey<FormState>();
-  bool isClient = false, loading = false;
-  var info = {};
+  bool loading = false;
   Signup signupController = new Signup();
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      isClient = false;
-    });
   }
 
   @override
@@ -60,7 +62,7 @@ class _SignupPageState extends State<SignupPage> {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          "É muito bom te ter conosco!",
+                          "Agora vamos ao seu endereço!",
                           style: TextStyle(
                             color: black,
                             fontSize: 20.0,
@@ -72,46 +74,7 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          "Que serviço devemos te oferecer?",
-                          style: TextStyle(
-                            color: black,
-                            fontSize: 14.0,
-                            fontStyle: FontStyle.italic,
-                            fontFamily: 'Raleway',
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Cliente",
-                          style: TextStyle(color: black),
-                        ),
-                        Switch(
-                            value: isClient,
-                            onChanged: (bool valor) {
-                              setState(() {
-                                isClient = valor;
-                              });
-                            }),
-                        Text(
-                          "Salão",
-                          style: TextStyle(color: black),
-                        ),
-                      ],
                     ),
                     Form(
                       key: _formKey,
@@ -121,67 +84,12 @@ class _SignupPageState extends State<SignupPage> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             child: TextFormField(
                               decoration: const InputDecoration(
-                                labelText: "Nome",
+                                labelText: "CEP",
                                 labelStyle: TextStyle(
                                   color: black,
                                 ),
                                 contentPadding: EdgeInsets.all(0),
-                                hintText: "Fulano da Silva",
-                                hintStyle: TextStyle(
-                                  color: black,
-                                  fontSize: 14,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w300,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: black,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: black,
-                                    width: 1.0,
-                                  ),
-                                ),
-                              ),
-                              style: TextStyle(
-                                color: white,
-                                fontSize: 14,
-                                letterSpacing: MediaQuery.of(context).size.width * 0.002,
-                                fontFamily: 'Roboto',
-                              ),
-                              keyboardType: TextInputType.text,
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  Fluttertoast.showToast(msg: "Insira um Nome");
-                                  return "";
-                                }
-                              },
-                              onChanged: (value) => {
-                                _formKey.currentState.save(),
-                              },
-                              onSaved: (input) => {
-                                _formKey.currentState.setState(() {
-                                  info["nome"] = input;
-                                })
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: !isClient ? "CPF" : "CNPJ",
-                                labelStyle: TextStyle(
-                                  color: black,
-                                ),
-                                contentPadding: EdgeInsets.all(0),
-                                hintText: !isClient ? "000.000.000-00" : "00.000.000.0000-00",
+                                hintText: "00000-000",
                                 hintStyle: TextStyle(
                                   color: black,
                                   fontSize: 14,
@@ -210,7 +118,7 @@ class _SignupPageState extends State<SignupPage> {
                               keyboardType: TextInputType.number,
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  Fluttertoast.showToast(msg: "Insira um CPF");
+                                  Fluttertoast.showToast(msg: "Insira um CEP");
                                   return "";
                                 }
                               },
@@ -219,7 +127,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                               onSaved: (input) => {
                                 _formKey.currentState.setState(() {
-                                  info["CPF"] = input;
+                                  this.widget.info["CEP"] = input;
                                 })
                               },
                             ),
@@ -231,12 +139,12 @@ class _SignupPageState extends State<SignupPage> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             child: TextFormField(
                               decoration: const InputDecoration(
-                                labelText: "Telefone",
+                                labelText: "Rua",
                                 labelStyle: TextStyle(
                                   color: black,
                                 ),
                                 contentPadding: EdgeInsets.all(0),
-                                hintText: "(00) 90000-0000",
+                                hintText: "Rua dos bobos",
                                 hintStyle: TextStyle(
                                   color: black,
                                   fontSize: 14,
@@ -262,10 +170,10 @@ class _SignupPageState extends State<SignupPage> {
                                 letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                 fontFamily: 'Roboto',
                               ),
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.text,
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  Fluttertoast.showToast(msg: "Insira um Telefone");
+                                  Fluttertoast.showToast(msg: "Insira uma rua");
                                   return "";
                                 }
                               },
@@ -274,7 +182,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                               onSaved: (input) => {
                                 _formKey.currentState.setState(() {
-                                  info["telefone"] = input;
+                                  this.widget.info["rua"] = input;
                                 })
                               },
                             ),
@@ -286,12 +194,12 @@ class _SignupPageState extends State<SignupPage> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             child: TextFormField(
                               decoration: const InputDecoration(
-                                labelText: "E-mail",
+                                labelText: "Número",
                                 labelStyle: TextStyle(
                                   color: black,
                                 ),
                                 contentPadding: EdgeInsets.all(0),
-                                hintText: "email@email.com",
+                                hintText: "Número 0",
                                 hintStyle: TextStyle(
                                   color: black,
                                   fontSize: 14,
@@ -317,10 +225,10 @@ class _SignupPageState extends State<SignupPage> {
                                 letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                 fontFamily: 'Roboto',
                               ),
-                              keyboardType: TextInputType.emailAddress,
+                              keyboardType: TextInputType.number,
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  Fluttertoast.showToast(msg: "Insira um email");
+                                  Fluttertoast.showToast(msg: "Insira um Número");
                                   return "";
                                 }
                               },
@@ -329,7 +237,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                               onSaved: (input) => {
                                 _formKey.currentState.setState(() {
-                                  info["email"] = input;
+                                  this.widget.info["numero"] = input;
                                 })
                               },
                             ),
@@ -341,11 +249,18 @@ class _SignupPageState extends State<SignupPage> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             child: TextFormField(
                               decoration: const InputDecoration(
-                                labelText: "Senha",
+                                labelText: "Bairro",
                                 labelStyle: TextStyle(
                                   color: black,
                                 ),
                                 contentPadding: EdgeInsets.all(0),
+                                hintText: "Taiçoca",
+                                hintStyle: TextStyle(
+                                  color: black,
+                                  fontSize: 14,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w300,
+                                ),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: black,
@@ -359,17 +274,16 @@ class _SignupPageState extends State<SignupPage> {
                                   ),
                                 ),
                               ),
-                              obscureText: true,
                               style: TextStyle(
                                 color: white,
                                 fontSize: 14,
                                 letterSpacing: MediaQuery.of(context).size.width * 0.002,
                                 fontFamily: 'Roboto',
                               ),
-                              keyboardType: TextInputType.emailAddress,
+                              keyboardType: TextInputType.text,
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  Fluttertoast.showToast(msg: "Insira uma senha");
+                                  Fluttertoast.showToast(msg: "Insira um Bairro");
                                   return "";
                                 }
                               },
@@ -378,11 +292,228 @@ class _SignupPageState extends State<SignupPage> {
                               },
                               onSaved: (input) => {
                                 _formKey.currentState.setState(() {
-                                  info["senha"] = input;
+                                  this.widget.info["bairro"] = input;
                                 })
                               },
                             ),
                           ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                labelText: "Cidade",
+                                labelStyle: TextStyle(
+                                  color: black,
+                                ),
+                                contentPadding: EdgeInsets.all(0),
+                                hintText: "Tangamandápio",
+                                hintStyle: TextStyle(
+                                  color: black,
+                                  fontSize: 14,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: black,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: black,
+                                    width: 1.0,
+                                  ),
+                                ),
+                              ),
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 14,
+                                letterSpacing: MediaQuery.of(context).size.width * 0.002,
+                                fontFamily: 'Roboto',
+                              ),
+                              keyboardType: TextInputType.text,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  Fluttertoast.showToast(msg: "Insira uma cidade");
+                                  return "";
+                                }
+                              },
+                              onChanged: (value) => {
+                                _formKey.currentState.save(),
+                              },
+                              onSaved: (input) => {
+                                _formKey.currentState.setState(() {
+                                  this.widget.info["cidade"] = input;
+                                })
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                labelText: "Estado",
+                                labelStyle: TextStyle(
+                                  color: black,
+                                ),
+                                contentPadding: EdgeInsets.all(0),
+                                hintText: "Unido",
+                                hintStyle: TextStyle(
+                                  color: black,
+                                  fontSize: 14,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: black,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: black,
+                                    width: 1.0,
+                                  ),
+                                ),
+                              ),
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 14,
+                                letterSpacing: MediaQuery.of(context).size.width * 0.002,
+                                fontFamily: 'Roboto',
+                              ),
+                              keyboardType: TextInputType.text,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  Fluttertoast.showToast(msg: "Insira um Estado");
+                                  return "";
+                                }
+                              },
+                              onChanged: (value) => {
+                                _formKey.currentState.save(),
+                              },
+                              onSaved: (input) => {
+                                _formKey.currentState.setState(() {
+                                  this.widget.info["estado"] = input;
+                                })
+                              },
+                            ),
+                          ),
+                          this.widget.isClient
+                              ? SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.05,
+                                )
+                              : SizedBox(),
+                          this.widget.isClient
+                              ? FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.8,
+                                    child: Text(
+                                      "Os serviços aparecerão quando um cliente acessar o perfil do seu salão",
+                                      style: TextStyle(
+                                        color: black,
+                                        fontSize: 18.0,
+                                        fontStyle: FontStyle.normal,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          this.widget.isClient
+                              ? SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.02,
+                                )
+                              : SizedBox(),
+                          this.widget.isClient
+                              ? FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.8,
+                                    child: Text(
+                                      "Os serviços devem estar separados por vírgulas",
+                                      style: TextStyle(
+                                        color: black,
+                                        fontSize: 14.0,
+                                        fontStyle: FontStyle.normal,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          this.widget.isClient
+                              ? SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.02,
+                                )
+                              : SizedBox(),
+                          this.widget.isClient
+                              ? Container(
+                                  width: MediaQuery.of(context).size.width * 0.8,
+                                  child: TextFormField(
+                                    decoration: const InputDecoration(
+                                      labelText: "Serviços",
+                                      labelStyle: TextStyle(
+                                        color: black,
+                                      ),
+                                      contentPadding: EdgeInsets.all(0),
+                                      hintText: "Cabelo, unhas",
+                                      hintStyle: TextStyle(
+                                        color: black,
+                                        fontSize: 14,
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: black,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: black,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      color: white,
+                                      fontSize: 14,
+                                      letterSpacing: MediaQuery.of(context).size.width * 0.002,
+                                      fontFamily: 'Roboto',
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        Fluttertoast.showToast(msg: "Insira seus serviços");
+                                        return "";
+                                      }
+                                    },
+                                    onChanged: (value) => {
+                                      _formKey.currentState.save(),
+                                    },
+                                    onSaved: (input) => {
+                                      _formKey.currentState.setState(() {
+                                        this.widget.info["servicos"] = input;
+                                      })
+                                    },
+                                  ),
+                                )
+                              : Container(),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05,
                           ),
@@ -396,7 +527,34 @@ class _SignupPageState extends State<SignupPage> {
                                 ),
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Signup1Page(info: info, isClient: isClient,)));
+                                    setState(() {
+                                      loading = true;
+                                    });
+                                    if (!this.widget.isClient) {
+                                      signupController.signupCliente(this.widget.info).then((value) {
+                                        if (value) {
+                                          Fluttertoast.showToast(msg: "Usuário cadastrado com sucesso");
+                                          Navigator.pushReplacementNamed(context, "/login");
+                                        } else {
+                                          Fluttertoast.showToast(msg: "Erro ao tentar cadastrar usuário!");
+                                        }
+                                        setState(() {
+                                          loading = false;
+                                        });
+                                      });
+                                    } else {
+                                      signupController.signupSalao(this.widget.info).then((value) {
+                                        if (value) {
+                                          Fluttertoast.showToast(msg: "Salão cadastrado com sucesso");
+                                          Navigator.pushReplacementNamed(context, "/login");
+                                        } else {
+                                          Fluttertoast.showToast(msg: "Erro ao tentar cadastrar salão!");
+                                        }
+                                        setState(() {
+                                          loading = false;
+                                        });
+                                      });
+                                    }
                                   }
                                 },
                                 child: Container(
@@ -411,7 +569,7 @@ class _SignupPageState extends State<SignupPage> {
                                   height: 44,
                                   width: 142,
                                   child: Text(
-                                    "Continuar",
+                                    "Cadastrar",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: white,

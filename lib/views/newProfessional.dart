@@ -321,91 +321,91 @@ class _NewProfessionalState extends State<NewProfessional> {
                                       },
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height * 0.02,
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width * 0.8,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          width: MediaQuery.of(context).size.width * 0.38,
-                                          child: DateTimeField(
-                                            decoration: const InputDecoration(
-                                              labelText: "Horário de Início",
-                                              labelStyle: TextStyle(
-                                                color: darkGrey,
-                                              ),
-                                              contentPadding: EdgeInsets.all(0),
-                                              enabledBorder: UnderlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: darkGrey,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                              focusedBorder: UnderlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: darkGrey,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                            ),
-                                            onSaved: (input) => {
-                                              _formKey.currentState.setState(() {
-                                                info["beginHour"] = input.hour;
-                                              })
-                                            },
-                                            format: format,
-                                            onShowPicker: (context, currentValue) async {
-                                              final time = await showTimePicker(
-                                                context: context,
-                                                initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                                              );
-                                              return DateTimeField.convert(time);
-                                            },
-                                          ),
-                                        ),
-                                        Container(
-                                          width: MediaQuery.of(context).size.width * 0.38,
-                                          child: DateTimeField(
-                                            decoration: const InputDecoration(
-                                              labelText: "Horário de Término",
-                                              labelStyle: TextStyle(
-                                                color: darkGrey,
-                                              ),
-                                              contentPadding: EdgeInsets.all(0),
-                                              enabledBorder: UnderlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: darkGrey,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                              focusedBorder: UnderlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: darkGrey,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                            ),
-                                            onSaved: (input) => {
-                                              _formKey.currentState.setState(() {
-                                                info["endHour"] = input.hour;
-                                              })
-                                            },
-                                            format: format,
-                                            onShowPicker: (context, currentValue) async {
-                                              final time = await showTimePicker(
-                                                context: context,
-                                                initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                                              );
-                                              return DateTimeField.convert(time);
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  // SizedBox(
+                                  //   height: MediaQuery.of(context).size.height * 0.02,
+                                  // ),
+                                  // Container(
+                                  //   width: MediaQuery.of(context).size.width * 0.8,
+                                  //   child: Row(
+                                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  //     children: [
+                                  //       Container(
+                                  //         width: MediaQuery.of(context).size.width * 0.38,
+                                  //         child: DateTimeField(
+                                  //           decoration: const InputDecoration(
+                                  //             labelText: "Horário de Início",
+                                  //             labelStyle: TextStyle(
+                                  //               color: darkGrey,
+                                  //             ),
+                                  //             contentPadding: EdgeInsets.all(0),
+                                  //             enabledBorder: UnderlineInputBorder(
+                                  //               borderSide: BorderSide(
+                                  //                 color: darkGrey,
+                                  //                 width: 1.0,
+                                  //               ),
+                                  //             ),
+                                  //             focusedBorder: UnderlineInputBorder(
+                                  //               borderSide: BorderSide(
+                                  //                 color: darkGrey,
+                                  //                 width: 1.0,
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //           onSaved: (input) => {
+                                  //             _formKey.currentState.setState(() {
+                                  //               info["beginHour"] = input.hour;
+                                  //             })
+                                  //           },
+                                  //           format: format,
+                                  //           onShowPicker: (context, currentValue) async {
+                                  //             final time = await showTimePicker(
+                                  //               context: context,
+                                  //               initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                                  //             );
+                                  //             return DateTimeField.convert(time);
+                                  //           },
+                                  //         ),
+                                  //       ),
+                                  //       Container(
+                                  //         width: MediaQuery.of(context).size.width * 0.38,
+                                  //         child: DateTimeField(
+                                  //           decoration: const InputDecoration(
+                                  //             labelText: "Horário de Término",
+                                  //             labelStyle: TextStyle(
+                                  //               color: darkGrey,
+                                  //             ),
+                                  //             contentPadding: EdgeInsets.all(0),
+                                  //             enabledBorder: UnderlineInputBorder(
+                                  //               borderSide: BorderSide(
+                                  //                 color: darkGrey,
+                                  //                 width: 1.0,
+                                  //               ),
+                                  //             ),
+                                  //             focusedBorder: UnderlineInputBorder(
+                                  //               borderSide: BorderSide(
+                                  //                 color: darkGrey,
+                                  //                 width: 1.0,
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //           onSaved: (input) => {
+                                  //             _formKey.currentState.setState(() {
+                                  //               info["endHour"] = input.hour;
+                                  //             })
+                                  //           },
+                                  //           format: format,
+                                  //           onShowPicker: (context, currentValue) async {
+                                  //             final time = await showTimePicker(
+                                  //               context: context,
+                                  //               initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                                  //             );
+                                  //             return DateTimeField.convert(time);
+                                  //           },
+                                  //         ),
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height * 0.05,
                                   ),

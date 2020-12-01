@@ -8,6 +8,12 @@ import 'package:hora_salao/models/salao.dart';
 import 'package:hora_salao/models/servicos.dart';
 
 class Person {
+  Future readClient(email) async {
+    var client = await FirebaseFirestore.instance.collection(collectionCliente).doc(email).get();
+
+    return client.data();
+  }
+
   Future readOne(email) async {
     try {
       var client = await FirebaseFirestore.instance.collection(collectionCliente).doc(email).get();
@@ -51,7 +57,7 @@ class Person {
 
           Endereco end = new Endereco(profissionalDoc.data()['street'], profissionalDoc.data()['city'], profissionalDoc.data()['uf'], profissionalDoc.data()['neighborhood'], profissionalDoc.data()['zip code'], profissionalDoc.data()['number'].toString());
 
-          profissional = new Profissional(profissionalDoc.data()['name'], profissionalDoc.data()['email'], profissionalDoc.data()['phone'], profissionalDoc.data()["cpf"], end, profissionalDoc.data()['begin'], profissionalDoc.data()['end']);
+          profissional = new Profissional(profissionalDoc.data()['name'], profissionalDoc.data()['email'], profissionalDoc.data()['phone'], profissionalDoc.data()["cpf"], end); //profissionalDoc.data()['begin'], profissionalDoc.data()['end']);
           tipoUsuario = "profissional";
         }
       }
