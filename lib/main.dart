@@ -14,6 +14,7 @@ import 'package:hora_salao/views/newProfessional.dart';
 import 'package:hora_salao/views/newService.dart';
 import 'package:hora_salao/views/professional.dart';
 import 'package:hora_salao/views/signup.dart';
+import 'package:hora_salao/views/signup2.dart';
 import 'package:hora_salao/views/splashScreen.dart';
 import 'package:hora_salao/views/perfil.dart';
 
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/forgotPassword': (context) => ForgotPasswordPage(),
         '/signup': (context) => SignupPage(),
+        //'/signup2': (context) => Signup2Page(),
         '/home': (context) => HomePage(),
         '/editPerfil': (context) => EditPerfilPage(),
         '/perfil': (context) => PerfilPage(),
