@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hora_salao/controllers/parlor.dart';
+import 'package:hora_salao/controllers/person.dart';
 import 'package:hora_salao/controllers/reservation.dart';
 import 'package:hora_salao/globals.dart';
 import 'package:hora_salao/widgets/bottomBar.dart';
@@ -24,17 +25,26 @@ class EditReservation extends StatefulWidget {
 
 class _EditReservationState extends State<EditReservation> {
   Parlor parlorController = new Parlor();
+  Person personController = new Person();
   ReservationController reservationController = new ReservationController();
   var p;
   bool loading = false;
 
   @override
   void initState() {
-    parlorController.readOne(this.widget.doc.data()['salao']).then((value) {
-      setState(() {
-        p = value;
+    if (tipoUsuario != "salao") {
+      parlorController.readOne(this.widget.doc.data()['salao']).then((value) {
+        setState(() {
+          p = value;
+        });
       });
-    });
+    } else {
+      personController.readClient(this.widget.doc.data()['cliente']).then((value) {
+        setState(() {
+          p = value;
+        });
+      });
+    }
     super.initState();
   }
 
@@ -93,7 +103,7 @@ class _EditReservationState extends State<EditReservation> {
               children: [
                 TopBar(
                   forgetPassButton: false,
-                  text: p != null ? "Reserva em: ${p['name']}" : "Reserva em: ",
+                  text: tipoUsuario != "salao" ? p != null ? "Reserva em: ${p['name']}" : "Reserva de: " : p != null ? "Reserva de: ${p['name'].toString().split(" ")[0]}" : "Reserva de: ",
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -104,6 +114,23 @@ class _EditReservationState extends State<EditReservation> {
                         children: [
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05,
+                          ),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: Text(
+                                "Código: ${this.widget.doc.id}",
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
                           ),
                           FittedBox(
                             fit: BoxFit.scaleDown,
@@ -136,74 +163,80 @@ class _EditReservationState extends State<EditReservation> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: Text(
-                                "Endereço:",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: Text(
-                                "${p['street']}, ${p['number']}",
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: Text(
-                                "Bairro ${p['neighborhood']} - CEP: ${p['zip code']}",
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: Text(
-                                "${p['city']}, ${p['uf']}",
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
+                          tipoUsuario != "salao"
+                              ? Column(
+                                  children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.02,
+                                    ),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width * 0.8,
+                                        child: Text(
+                                          "Endereço:",
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.02,
+                                    ),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width * 0.8,
+                                        child: Text(
+                                          "${p['street']}, ${p['number']}",
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.02,
+                                    ),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width * 0.8,
+                                        child: Text(
+                                          "Bairro ${p['neighborhood']} - CEP: ${p['zip code']}",
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.02,
+                                    ),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width * 0.8,
+                                        child: Text(
+                                          "${p['city']}, ${p['uf']}",
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.02,
                           ),

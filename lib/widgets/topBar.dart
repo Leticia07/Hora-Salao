@@ -63,12 +63,12 @@ class _TopBarState extends State<TopBar> {
                     ? FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.6,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           child: Text(
                             this.widget.text,
                             style: TextStyle(
                               color: mainTextColor, //Color(0xFFdaa520),
-                              fontSize: 22.0,
+                              fontSize: MediaQuery.of(context).size.width * 0.06,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w500,
                             ),

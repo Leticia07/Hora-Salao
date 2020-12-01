@@ -94,10 +94,26 @@ class _AgendaState extends State<Agenda> {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: Text(
-                            "${reservations[i].data()['nomeSalao']}",
+                            "nº ${reservations[i].id}",
                             style: TextStyle(
                               color: darkGrey,
-                              fontSize: 20.0,
+                              fontSize: 14.0,
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'Raleway',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Text(
+                            tipoUsuario != "salao" ? "${reservations[i].data()['nomeSalao']}" : "${reservations[i].data()['nomeCliente']}",
+                            style: TextStyle(
+                              color: darkGrey,
+                              fontSize: 18.0,
                               fontStyle: FontStyle.italic,
                               fontFamily: 'Raleway',
                             ),

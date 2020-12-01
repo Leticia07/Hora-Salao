@@ -15,7 +15,7 @@ class Professional {
         var doc = await FirebaseFirestore.instance.collection(collectionProfissional).doc(docs.data()['profissionais'][i]).get();
 
         Endereco end = new Endereco("", "", "", "", "", "");
-        Profissional p = new Profissional(doc.data()["name"], doc.data()['email'], doc.data()["phone"], doc.data()["zip code"], end, doc.data()['beginHour'], doc.data()['endHour']);
+        Profissional p = new Profissional(doc.data()["name"], doc.data()['email'], doc.data()["phone"], doc.data()["zip code"], end);// doc.data()['beginHour'], doc.data()['endHour']);
 
         salao.addProfissionais(p);
       }

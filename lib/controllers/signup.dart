@@ -15,14 +15,25 @@ class Signup {
 
       await FirebaseAuth.instanceFor(app: secondaryApp).createUserWithEmailAndPassword(email: info['email'], password: info['senha']).then((value) async {
         if (value != null) {
-          await FirebaseFirestore.instanceFor(app: secondaryApp).collection(collectionProfissional).doc(info['email']).set({"name": info["nome"], "cpf": info["CPF"], "phone": info["telefone"], "email": info["email"], "zip code": "", "street": "", "number": "", "neighborhood": "", "city": "", "uf": "", "beginHour": info['beginHour'], "endHour": info['endHour']});
+          await FirebaseFirestore.instanceFor(app: secondaryApp).collection(collectionProfissional).doc(info['email']).set({
+            "name": info["nome"],
+            "cpf": info["CPF"],
+            "phone": info["telefone"],
+            "email": info["email"],
+            "zip code": "",
+            "street": "",
+            "number": "",
+            "neighborhood": "",
+            "city": "",
+            "uf": "",
+          }); //"beginHour": info['beginHour'], "endHour": info['endHour']});
 
           await FirebaseFirestore.instanceFor(app: secondaryApp).collection(collectionSalao).doc(salao.emailSalao).update({
             "profissionais": FieldValue.arrayUnion([info['email']]),
           });
 
           Endereco end = new Endereco("", "", "", "", "", "");
-          Profissional p = new Profissional(info["nome"], info['email'], info["telefone"], info["CPF"], end, info['beginHour'], info['endHour']);
+          Profissional p = new Profissional(info["nome"], info['email'], info["telefone"], info["CPF"], end); //info['beginHour'], info['endHour']);
 
           salao.addProfissionais(p);
         } else {

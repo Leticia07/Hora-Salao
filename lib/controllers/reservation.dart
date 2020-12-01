@@ -8,6 +8,7 @@ class ReservationController {
 
     await FirebaseFirestore.instance.collection("horarios").add({
       "cliente": info['cliente'],
+      "nomeCliente": info['nomeCliente'],
       "salao": info['salao'],
       "nomeSalao": info['nomeSalao'],
       "profissional": info['profissional'],

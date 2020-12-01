@@ -56,7 +56,7 @@ class Login {
 
               Endereco end = new Endereco(profissionalDoc.data()['street'], profissionalDoc.data()['city'], profissionalDoc.data()['uf'], profissionalDoc.data()['neighborhood'], profissionalDoc.data()['zip code'], profissionalDoc.data()['number'].toString());
 
-              profissional = new Profissional(profissionalDoc.data()['name'], profissionalDoc.data()['email'], profissionalDoc.data()['phone'], profissionalDoc.data()["cpf"], end, profissionalDoc.data()['begin'], profissionalDoc.data()['end']);
+              profissional = new Profissional(profissionalDoc.data()['name'], profissionalDoc.data()['email'], profissionalDoc.data()['phone'], profissionalDoc.data()["cpf"], end); //profissionalDoc.data()['begin'], profissionalDoc.data()['end']);
               tipoUsuario = "profissional";
             }
           }
