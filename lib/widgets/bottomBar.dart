@@ -42,7 +42,7 @@ class _BottomBarState extends State<BottomBar> {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/home");
+                Navigator.pushNamedAndRemoveUntil(context, "/home", (Route<dynamic> route) => false);
               },
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,

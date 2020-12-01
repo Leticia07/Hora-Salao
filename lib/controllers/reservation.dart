@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hora_salao/globals.dart';
+import 'package:intl/intl.dart';
 
 class ReservationController {
   Future create(info) async {
@@ -30,5 +32,50 @@ class ReservationController {
     await FirebaseFirestore.instance.collection("horarios").doc(docId).delete();
 
     return true;
+  }
+
+  Future summary() async {
+    Map summaryInfo = new Map();
+    var email = "";
+    
+    if (tipoUsuario == "cliente") {
+      email = cliente.emailPessoa;
+    } else if (tipoUsuario == "salao") {
+      email = salao.emailSalao;
+    }
+
+    var reservations;
+    await readOne(email).then((value) {
+      reservations = value;
+    });
+
+    var numberOfReservations = 0, total = 0.0, biggestValue = -1.0;
+
+    summaryInfo['services'] = [];
+
+    reservations.forEach((v) {
+      var date = DateFormat("yyyy-MM-dd hh:mm:ss").parse(v.data()['day']);
+      if (date.month == DateTime.now().month && date.year == DateTime.now().year) {
+        numberOfReservations++;
+        total += v.data()['total'];
+        v.data()['servicos'].forEach((k, services) {
+          if (summaryInfo[k] == null) {
+            summaryInfo[k] = services['valor'];
+          } else {
+            summaryInfo[k] += services['valor'];
+          }
+          if (biggestValue < summaryInfo[k]) {
+            biggestValue = summaryInfo[k];
+            summaryInfo["biggestInvestiment"] = k;
+          }
+          if (!summaryInfo['services'].contains(k)) {
+            summaryInfo['services'].add(k);
+          }
+        });
+      }
+    });
+
+    print(summaryInfo);
+    return summaryInfo;
   }
 }
